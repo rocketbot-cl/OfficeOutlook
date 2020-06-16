@@ -190,7 +190,8 @@ if module == "sendEmail":
         mail.To = to_
         mail.BodyFormat = 2
         mail.HTMLBody = body
-        mail.CC = cc
+        if cc:
+            mail.CC = cc
         mail.Subject = subject
         if att_files:
             mail.Attachments.Add(att_files)
