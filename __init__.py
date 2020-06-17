@@ -125,12 +125,12 @@ if module == "readEmail":
 
     try:
         mail_ = instance.GetItemFromID(entry_id)
+        files = []
+        for att in mail_.Attachments:
+            if download_:
+                att.SaveASFile(os.path.join(download_, att.FileName))
+            files.append(att.FileName)
         if result_:
-            files = []
-            for att in mail_.Attachments:
-                if download_:
-                    att.SaveASFile(os.path.join(download_, att.FileName))
-                files.append(att.FileName)
             to_ = [
                 rec.PropertyAccessor.GetProperty('http://schemas.microsoft.com/mapi/proptag/0x39FE001E') or rec.Address
                 for rec in mail_.Recipients]
