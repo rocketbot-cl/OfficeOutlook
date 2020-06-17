@@ -13,32 +13,9 @@ Module to connect Microsoft Outlook application
 
 </ul>
 
-**In the example robot you must change the URL and credentials for yours.
 
-![alt text](https://raw.githubusercontent.com/rocketbot-cl/Outlook/master/example/outlook.png)
+![alt text](https://raw.githubusercontent.com/rocketbot-cl/OfficeOutlook/master/example/officeoutlook.png)
 
-<strong>Video Example:</strong>
-
-[![Outlook365](https://img.youtube.com/vi/JYbdunZZVrA/0.jpg)](https://www.youtube.com/watch?v=JYbdunZZVrA "Outlook365")
-
-
-<h2>Dependencies</h2>
-
-<ul>
-  <li>
-    <strong>
-      <a href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a>
-    </strong> 
-  </li>  
-</ul> 
-
-<ul>
-  <li>
-    <strong>
-      <a href="https://pypi.org/project/mail-parser/">mail-parser</a>
-    </strong> 
-  </li>  
-</ul>  
 
 <h2>License</h2>
 
