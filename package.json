@@ -49,7 +49,7 @@
         },
         {
             "en": {
-                "title": "Crear folder",
+                "title": "Create folder",
                 "description": "Create a folder on Outlook",
                 "title_options": null,
                 "options":null
@@ -91,7 +91,7 @@
                         "type": "input",
                         "placeholder": "{var}",
                         "title": {
-                            "en": "Set to var:",
+                            "en": "Set to variable:",
                             "es": "Asignar a variable:"
                         },
                         "help": {
@@ -118,7 +118,7 @@
         },
         {
             "en": {
-                "title": "Search Filter",
+                "title": "Search Email by Filter",
                 "description": "Search by filter provided",
                 "title_options": null,
                 "options":null
@@ -254,7 +254,7 @@
         },
         {
             "en": {
-                "title": "Move email to folder by EntryID",
+                "title": "Move email to folder",
                 "description": "Move email data by EntryID provided",
                 "title_options": null,
                 "options":null
@@ -364,12 +364,6 @@
                 "title": "Enviar Email",
                 "description": "Envia un email, previamente debe configurar el servidor",
                 "title_options": "Seleccione una opción",
-                "options": null
-            },
-            "cn": {
-                "title": "Send Email",
-                "description": "输入要用逗号分隔的要清理的变量",
-                "title_options": "选择选项",
                 "options": null
             },
             "form": {
