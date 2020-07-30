@@ -167,6 +167,25 @@ if module == "moveEmail":
         PrintException()
         raise e
 
+if module == "moveEmailByName":
+    to_ = GetParams("to_")
+    entry_id = GetParams("entry_id")
+
+    if not to_:
+        raise Exception("No destination folder provided")
+
+    if not entry_id:
+        raise Exception("No entryID provided")
+
+    try:
+        # inbox = instance.GetDefaultFolder(6)
+        mail_ = instance.GetItemFromID(entry_id)
+        mail_.Move(instance.GetDefaultFolder(6).Folders(to_))
+    except Exception as e:
+        PrintException()
+        raise e
+
+
 if module == "markAsUnread":
     entry_id = GetParams("entry_id")
 
