@@ -9,10 +9,15 @@ Module to connect Microsoft Outlook application
     <li>Read email for EntryId</li>
     <li>Create Folder</li>
     <li>Move email to folder</li>
+    <li>Move email to folder by name</li>
     <li>Mark email as unread</li>
 
 </ul>
 
+## Updates
+
+### 31-Jul-2020
+- Move email to folder by name
 
 ![alt text](https://raw.githubusercontent.com/rocketbot-cl/OfficeOutlook/master/example/officeoutlook.png)
 
