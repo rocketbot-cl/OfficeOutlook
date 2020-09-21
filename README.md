@@ -11,11 +11,14 @@ Module to connect Microsoft Outlook application
     <li>Move email to folder</li>
     <li>Move email to folder by name</li>
     <li>Mark email as unread</li>
+    <li>Reply Email</li>
 
 </ul>
 
 ## Updates
 
+### 21-Sep-2020
+- Reply email from id
 ### 31-Jul-2020
 - Move email to folder by name
 
