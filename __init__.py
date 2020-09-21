@@ -112,6 +112,7 @@ if module == "search":
         if result_:
             SetVar(result_, tmp)
     except Exception as identifier:
+        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
         PrintException()
         raise identifier
 
@@ -222,3 +223,34 @@ if module == "sendEmail":
     except Exception as e:
         PrintException()
         raise e
+
+if module == "replyEmail":
+    entry_id = GetParams("entry_id")
+    to_ = GetParams("to")
+    subject = GetParams("subject")
+    body = GetParams("body")
+    att_files = GetParams("attached_file")
+    att_folder = GetParams("attached_folder")
+
+    if not instance:
+        raise Exception("No Outlook connection")
+
+    try:
+        mail_ = instance.GetItemFromID(entry_id)
+        mail = mail_.ReplyAll()
+
+        mail.HTMLBody = body
+        mail.Subject = mail_.Subject
+        if att_files:
+            mail.Attachments.Add(att_files)
+        if att_folder:
+            for f in os.listdir(att_folder):
+                f = os.path.join(att_folder, f)
+                mail.Attachments.Add(f)
+        mail.Send()
+
+    except Exception as e:
+        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
+
