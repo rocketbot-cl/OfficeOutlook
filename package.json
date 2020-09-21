@@ -531,13 +531,13 @@
         {
             "en": {
                 "title": "Reply Email",
-                "description": "Send email, before you must configurate the server",
+                "description": "Reply mail from Entry ID",
                 "title_options": "Select Option",
                 "options": null
             },
             "es": {
                 "title": "Responder Email",
-                "description": "Envia un email, previamente debe configurar el servidor",
+                "description": "Responde un email usando el Entry ID",
                 "title_options": "Seleccione una opción",
                 "options": null
             },
