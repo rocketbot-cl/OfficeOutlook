@@ -12,11 +12,14 @@ Module to connect Microsoft Outlook application
     <li>Move email to folder by name</li>
     <li>Mark email as unread</li>
     <li>Reply Email</li>
+    <li>Forward Email</li>
 
 </ul>
 
 ## Updates
 
+### 14-Oct-2020
+- Forward email from id
 ### 21-Sep-2020
 - Reply email from id
 ### 31-Jul-2020

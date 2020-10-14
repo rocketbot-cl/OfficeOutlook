@@ -254,3 +254,21 @@ if module == "replyEmail":
         PrintException()
         raise e
 
+
+if module == "Forward":
+    entry_id = GetParams("entry_id")
+    to_ = GetParams("to")
+
+    if not instance:
+        raise Exception("No Outlook connection")
+    try:
+        mail_ = instance.GetItemFromID(entry_id)
+        mail = mail_.Forward()
+
+        mail.To = to_
+        mail.Send()
+
+    except Exception as e:
+        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        PrintException()
+        raise e
