@@ -85,13 +85,18 @@ if module == "search":
 
     try:
         tmp = []
+        domain = None
         if filter_:
             if "subject" in filter_.lower():
                 filter_ = filter_.split(' "')[-1][:-1]
                 filter_ = """@SQL="urn:schemas:httpmail:subject" like '%{tx}%'""".format(tx=filter_)
-            if "from" in filter_.lower():
+            elif "from" in filter_.lower():
                 filter_ = filter_.split(' "')[-1][:-1]
                 filter_ = """[SenderEmailAddress] = '{tx}'""".format(tx=filter_)
+            elif "domain" in filter_.lower():
+                domain = filter_
+                filter_ = ""
+
         else:
             filter_ = ""
         if type_ == "unread":
@@ -107,7 +112,16 @@ if module == "search":
         table_ = inbox.GetTable(filter_)
         while not table_.EndOfTable:
             r = table_.GetNextRow()
-            tmp.append(r("EntryID"))
+            if domain:
+                filter_ = domain.split(' "')[-1][:-1]
+                mail_ = instance.GetItemFromID(r("EntryID"))
+                try:
+                    if filter_ in mail_.SenderEmailAddress:
+                        tmp.append(r("EntryID"))
+                except:
+                    continue
+            else:
+                tmp.append(r("EntryID"))
 
         if result_:
             SetVar(result_, tmp)
