@@ -116,7 +116,12 @@ if module == "search":
                 filter_ = domain.split(' "')[-1][:-1]
                 mail_ = instance.GetItemFromID(r("EntryID"))
                 try:
-                    if filter_ in mail_.SenderEmailAddress:
+                    if mail_.SenderEmailType == "EX":
+                        address = mail_.Sender.GetExchangeUser().PrimarySmtpAddress
+                    else:
+                        address = mail_.SenderEmailAddress
+
+                    if filter_ in address:
                         tmp.append(r("EntryID"))
                 except:
                     continue
@@ -126,7 +131,7 @@ if module == "search":
         if result_:
             SetVar(result_, tmp)
     except Exception as identifier:
-        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise identifier
 
@@ -264,7 +269,7 @@ if module == "replyEmail":
         mail.Send()
 
     except Exception as e:
-        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
 
@@ -283,6 +288,6 @@ if module == "Forward":
         mail.Send()
 
     except Exception as e:
-        print("\x1B[" + "31;40mAn error occurred\u2193\x1B[" + "0m")
+        print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
