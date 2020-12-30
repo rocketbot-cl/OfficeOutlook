@@ -86,25 +86,32 @@ if module == "search":
     try:
         tmp = []
         domain = None
+
+        """
+        SUBJECT 'test' AND FROM 'd@m.c'
+        """
+
         if filter_:
-            if "subject" in filter_.lower():
-                filter_ = filter_.split(' "')[-1][:-1]
-                filter_ = """@SQL="urn:schemas:httpmail:subject" like '%{tx}%'""".format(tx=filter_)
-            elif "from" in filter_.lower():
-                filter_ = filter_.split(' "')[-1][:-1]
-                filter_ = """[SenderEmailAddress] = '{tx}'""".format(tx=filter_)
-            elif "domain" in filter_.lower():
+            if "domain" in filter_.lower():
                 domain = filter_
                 filter_ = ""
+            else:
+                filter_ = filter_.lower()
+                filter_ = filter_.replace("""subject """, """[subject]=""")
+                filter_ = filter_.replace("from", "[SenderEmailAddress]=")
+                filter_ = filter_.replace(" and ", " AND ").replace(" or ", " OR ")
+            # if "subject" in filter_.lower():
+            #     filter_ = filter_.split(' "')[-1][:-1]
+            #     filter_ = """@SQL="urn:schemas:httpmail:subject" like '%{tx}%'""".format(tx=filter_)
+            # if "from" in filter_.lower():
+            #     filter_ = filter_.split(' "')[-1][:-1]
+            #     filter_ = """[SenderEmailAddress] = '{tx}'""".format(tx=filter_)
 
         else:
             filter_ = ""
         if type_ == "unread":
             if len(filter_) > 0:
-                if "SenderEmailAddress" in filter_:
-                    filter_ += """ AND [UnRead] = true"""
-                else:
-                    filter_ += """ AND "urn:schemas:httpmail:read" = 0"""
+                filter_ += """ AND [UnRead] = true"""
             else:
                 filter_ = "[UnRead] = true"
         inbox = instance.GetDefaultFolder(6)
