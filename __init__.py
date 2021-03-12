@@ -172,6 +172,7 @@ if module == "readEmail":
             }
             SetVar(result_, data)
         mail_.UnRead = False
+        mail_.Save()
     except Exception as e:
         PrintException()
         raise e
@@ -219,6 +220,7 @@ if module == "markAsUnread":
     try:
         mail_ = instance.GetItemFromID(entry_id)
         mail_.unread = True
+        mail_.Save()
     except Exception as e:
         PrintException()
         raise e
