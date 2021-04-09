@@ -99,21 +99,10 @@ if module == "search":
             domain = filter_
             filter_ = ""
 
-        if "*" in filter_:
-            filter_ = filter_.replace("""subject """, """@SQL="urn:schemas:httpmail:subject" like """)
-            filter_ = filter_.replace("*", "%")
-        else:
-            filter_ = filter_.replace("""subject """, """[subject]=""")
-            filter_ = filter_.replace("from", "[SenderEmailAddress]=")
-            filter_ = filter_.replace(" and ", " AND ").replace(" or ", " OR ")
-
-            # if "subject" in filter_.lower():
-            #     filter_ = filter_.split(' "')[-1][:-1]
-            #
-                            #@sql="urn:schemas:httpmail:subject" like '%promo%'
-            # if "from" in filter_.lower():
-            #     filter_ = filter_.split(' "')[-1][:-1]
-            #     filter_ = """[SenderEmailAddress] = '{tx}'""".format(tx=filter_)
+        filter_ = filter_.replace("""subject """, """@SQL="urn:schemas:httpmail:subject" like """)
+        filter_ = filter_.replace("*", "%")
+        filter_ = filter_.replace("from", "[SenderEmailAddress]=")
+        filter_ = filter_.replace(" and ", " AND ").replace(" or ", " OR ")
 
         if type_ == "unread":
             if len(filter_) > 0:

@@ -18,6 +18,8 @@ Module to connect Microsoft Outlook application
 
 ## Updates
 
+### 9-Abr-2021
+- Fix filter by subject
 ### 14-Oct-2020
 - Forward email from id
 ### 21-Sep-2020
