@@ -104,9 +104,11 @@ if module == "search":
         filter_ = filter_.replace("from", "[SenderEmailAddress]=")
         filter_ = filter_.replace(" and ", " AND ").replace(" or ", " OR ")
 
+
+
         if type_ == "unread":
             if len(filter_) > 0:
-                filter_ += """ AND [UnRead] = true"""
+                filter_ += """ AND "urn:schemas:httpmail:read"=0 """
             else:
                 filter_ = "[UnRead] = true"
         inbox = instance.GetDefaultFolder(6)
