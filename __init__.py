@@ -42,15 +42,17 @@ if module == "connect":
 
     whereToSave = GetParams("whereToSave")
     connected = False
-    
+
     try:
         instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
         # print(instance)
-        if instance is not None:
+        if instance:
             connected = True
+
     except Exception as e:
         PrintException()
         raise e
+
 
     SetVar(whereToSave, connected)
 
