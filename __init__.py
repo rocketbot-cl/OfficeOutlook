@@ -39,11 +39,20 @@ global instance
 module = GetParams("module")
 
 if module == "connect":
+
+    whereToSave = GetParams("whereToSave")
+    connected = False
+    
     try:
         instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+        # print(instance)
+        if instance is not None:
+            connected = True
     except Exception as e:
         PrintException()
         raise e
+
+    SetVar(whereToSave, connected)
 
 if module == "makeDir":
     folder_name = GetParams("folder_name")
