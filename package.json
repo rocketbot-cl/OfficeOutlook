@@ -527,6 +527,19 @@
                         },
                         "id": "attached_folder",
                         "css": "col-md-12"
+                    },
+                    {
+                        "type": "checkbox",
+                        "placeholder": {
+                            "es": "Confirmcion de lectura",
+                            "en": "Read Receipt"                        
+                        },
+                        "title": {
+                            "es": "Confirmcion de lectura",
+                            "en": "Read Receipt"                        
+                        },
+                        "id": "read_receipt",
+                        "css": "col-md-6"
                     }
                 ]
             },
