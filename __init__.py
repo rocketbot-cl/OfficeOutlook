@@ -242,7 +242,7 @@ if module == "sendEmail":
     body = GetParams("body")
     att_files = GetParams("attached_file")
     att_folder = GetParams("attached_folder")
-
+    read_receipt = GetParams("read_receipt")
     try:
         mail = instance.Application.CreateItem(0)
         mail.To = to_
@@ -257,6 +257,8 @@ if module == "sendEmail":
             for f in os.listdir(att_folder):
                 f = os.path.join(att_folder, f)
                 mail.Attachments.Add(f)
+        if read_receipt:
+            mail.ReadReceiptRequested = True
         mail.Send()
     except Exception as e:
         PrintException()
