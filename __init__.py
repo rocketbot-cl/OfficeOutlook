@@ -109,19 +109,21 @@ if module == "search":
         if "domain" in filter_.lower():
             domain = filter_
             filter_ = ""
+        
+        filter_2 = "@SQL="
 
-        filter_ = filter_.replace("""subject """, """@SQL="urn:schemas:httpmail:subject" like """)
+        filter_ = filter_.replace("""subject """, """"urn:schemas:httpmail:subject" like """)
         filter_ = filter_.replace("*", "%")
-        filter_ = filter_.replace("from", "[SenderEmailAddress]=")
+        filter_ = filter_.replace("from", """"urn:schemas:httpmail:fromemail" like""")
         filter_ = filter_.replace(" and ", " AND ").replace(" or ", " OR ")
 
-
+        filter_ = filter_2 + filter_
 
         if type_ == "unread":
-            if len(filter_) > 0:
-                filter_ += """ AND "urn:schemas:httpmail:read"=0 """
+            if len(filter_) > 5:
+                filter_ += """ AND "urn:schemas:httpmail:read"=0"""
             else:
-                filter_ = "[UnRead] = true"
+                filter_ += """"urn:schemas:httpmail:read"=1"""
         inbox = instance.GetDefaultFolder(6)
         print('filter', filter_)
         table_ = inbox.GetTable(filter_)
