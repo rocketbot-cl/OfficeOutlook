@@ -123,7 +123,7 @@ if module == "search":
             if len(filter_) > 5:
                 filter_ += """ AND "urn:schemas:httpmail:read"=0"""
             else:
-                filter_ += """"urn:schemas:httpmail:read"=1"""
+                filter_ += """"urn:schemas:httpmail:read"=0"""
         inbox = instance.GetDefaultFolder(6)
         print('filter', filter_)
         table_ = inbox.GetTable(filter_)
