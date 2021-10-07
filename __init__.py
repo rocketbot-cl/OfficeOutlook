@@ -87,6 +87,9 @@ if module == "search":
     filter_ = GetParams("filter")
     type_ = GetParams("filter_type")
     result_ = GetParams("result")
+    folderToSearchIn = int(GetParams("folderToSearchIn"))
+    if not folderToSearchIn:
+        folderToSearchIn = 6
 
     if not type_:
         type_ = "all"
@@ -124,7 +127,7 @@ if module == "search":
                 filter_ += """ AND "urn:schemas:httpmail:read"=0"""
             else:
                 filter_ += """"urn:schemas:httpmail:read"=0"""
-        inbox = instance.GetDefaultFolder(6)
+        inbox = instance.GetDefaultFolder(folderToSearchIn)
         print('filter', filter_)
         table_ = inbox.GetTable(filter_)
         while not table_.EndOfTable:
@@ -312,3 +315,10 @@ if module == "Forward":
         print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
         PrintException()
         raise e
+
+if module == "SaveAs":
+    entry_id = GetParams("entry_id")
+    whereToSave = GetParams("whereToSave")
+
+    mail = instance.GetItemFromID(entry_id)
+    mail.SaveAs(whereToSave, 3)
