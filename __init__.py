@@ -31,6 +31,7 @@ cur_path = base_path + os.sep + 'OfficeOutlook' + os.sep
 sys.path.append(cur_path + 'libs')
 
 from win32com import client
+import pandas as pd
 
 global instance
 """
@@ -322,3 +323,24 @@ if module == "SaveAs":
 
     mail = instance.GetItemFromID(entry_id)
     mail.SaveAs(whereToSave, 3)
+
+
+if module == "extractTable":
+    entry_id = GetParams("entry_id")
+    result_ = GetParams("result")
+
+    if not instance:
+        raise Exception("No Outlook connection")
+
+    try:
+        mail_ = instance.GetItemFromID(entry_id)
+        if result_:
+            to_ = [
+                rec.PropertyAccessor.GetProperty('http://schemas.microsoft.com/mapi/proptag/0x39FE001E') or rec.Address
+                for rec in mail_.Recipients]
+            from_ = mail_.SenderEmailAddress
+            data = pd.read_html(mail_.HTMLBody)[0].values.tolist()
+            SetVar(result_, data)
+    except Exception as e:
+        PrintException()
+        raise e
