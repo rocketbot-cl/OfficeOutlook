@@ -344,3 +344,22 @@ if module == "extractTable":
     except Exception as e:
         PrintException()
         raise e
+
+if module == "get_attachments":
+    entry_id = GetParams("entry_id")
+    download_ = GetParams("download")
+
+    if not instance:
+        raise Exception("No Outlook connection")
+    try:
+        mail_ = instance.GetItemFromID(entry_id)
+        files = []
+        for att in mail_.Attachments:
+            if download_:
+                att.SaveASFile(os.path.join(download_, att.FileName))
+            files.append(att.FileName)
+        mail_.UnRead = False
+        mail_.Save()
+    except Exception as e:
+        PrintException()
+        raise e

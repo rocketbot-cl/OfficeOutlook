@@ -6,7 +6,7 @@
   
 Connect to Outlook Desktop application.  
 
-## How to install this module
+## Howto install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
@@ -53,7 +53,10 @@ Forward mail from Entry ID
 Saves a mail from Entry ID
 
 12. Extract table from email by EntryID  
-Extract the content of a table by email EntryID provided  
+Extract the content of a table by email EntryID provided
+
+13. Download attachments by EntryID  
+Download attachments by EntryID in a folder  
 
 
 
