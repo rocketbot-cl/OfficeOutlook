@@ -108,6 +108,7 @@ if module == "search":
 
         if not filter_:
             filter_ = ""
+            inbox = instance.GetDefaultFolder('6')
 
         filter_ = filter_.lower()
         if "domain" in filter_.lower():
