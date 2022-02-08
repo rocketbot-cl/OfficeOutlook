@@ -94,7 +94,6 @@ if module == "search":
     except:
         pass
     if not folderToSearchIn:
-    if not folderToSearchIn:
         folderToSearchIn = 6
 
     if not type_:
