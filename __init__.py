@@ -88,7 +88,12 @@ if module == "search":
     filter_ = GetParams("filter")
     type_ = GetParams("filter_type")
     result_ = GetParams("result")
-    folderToSearchIn = int(GetParams("folderToSearchIn"))
+    folderToSearchIn = GetParams("folderToSearchIn")
+    try:
+        folderToSearchIn = int(folderToSearchIn)
+    except:
+        pass
+    if not folderToSearchIn:
     if not folderToSearchIn:
         folderToSearchIn = 6
 
