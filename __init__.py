@@ -336,7 +336,7 @@ if module == "extractTable":
 
     if not instance:
         raise Exception("No Outlook connection")
-
+    realData = []
     try:
         mail_ = instance.GetItemFromID(entry_id)
         if result_:
@@ -344,8 +344,12 @@ if module == "extractTable":
                 rec.PropertyAccessor.GetProperty('http://schemas.microsoft.com/mapi/proptag/0x39FE001E') or rec.Address
                 for rec in mail_.Recipients]
             from_ = mail_.SenderEmailAddress
-            data = pd.read_html(mail_.HTMLBody)[0].values.tolist()
-            SetVar(result_, data)
+            # data = pd.read_html(mail_.HTMLBody)[0].values.tolist()
+            data = pd.read_html(mail_.HTMLBody)
+
+            for each in data:
+                realData.append(each.values.tolist())
+            SetVar(result_, realData)
     except Exception as e:
         PrintException()
         raise e
