@@ -88,7 +88,11 @@ if module == "search":
     filter_ = GetParams("filter")
     type_ = GetParams("filter_type")
     result_ = GetParams("result")
-    folderToSearchIn = int(GetParams("folderToSearchIn"))
+    folderToSearchIn = GetParams("folderToSearchIn")
+    try:
+        folderToSearchIn = int(folderToSearchIn)
+    except:
+        pass
     if not folderToSearchIn:
         folderToSearchIn = 6
 
@@ -108,6 +112,7 @@ if module == "search":
 
         if not filter_:
             filter_ = ""
+            inbox = instance.GetDefaultFolder('6')
 
         filter_ = filter_.lower()
         if "domain" in filter_.lower():
@@ -331,7 +336,7 @@ if module == "extractTable":
 
     if not instance:
         raise Exception("No Outlook connection")
-
+    realData = []
     try:
         mail_ = instance.GetItemFromID(entry_id)
         if result_:
@@ -339,8 +344,31 @@ if module == "extractTable":
                 rec.PropertyAccessor.GetProperty('http://schemas.microsoft.com/mapi/proptag/0x39FE001E') or rec.Address
                 for rec in mail_.Recipients]
             from_ = mail_.SenderEmailAddress
-            data = pd.read_html(mail_.HTMLBody)[0].values.tolist()
-            SetVar(result_, data)
+            # data = pd.read_html(mail_.HTMLBody)[0].values.tolist()
+            data = pd.read_html(mail_.HTMLBody)
+
+            for each in data:
+                realData.append(each.values.tolist())
+            SetVar(result_, realData)
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "get_attachments":
+    entry_id = GetParams("entry_id")
+    download_ = GetParams("download")
+
+    if not instance:
+        raise Exception("No Outlook connection")
+    try:
+        mail_ = instance.GetItemFromID(entry_id)
+        files = []
+        for att in mail_.Attachments:
+            if download_:
+                att.SaveASFile(os.path.join(download_, att.FileName))
+            files.append(att.FileName)
+        mail_.UnRead = False
+        mail_.Save()
     except Exception as e:
         PrintException()
         raise e

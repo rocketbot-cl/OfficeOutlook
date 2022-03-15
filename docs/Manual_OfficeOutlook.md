@@ -4,9 +4,9 @@
 
 # OfficeOutlook
   
-Conecta a la aplicación de escritorio de Outlook.
+Connect to Outlook Desktop application.  
   
-![banner](imgs/Banner_OfficeOutlook.png)
+![banner](/docs/imgs/Banner_OfficeOutlook.png)
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de rocketbot.  
@@ -126,3 +126,11 @@ Extrae una table del correo electrónico por EntryID
 | --- | --- | --- |
 |EntryID|ID del email que se desea extraer la tabla.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Asignar a variable|Guardar el resultado de la lectura de la tabla.|variable|
+
+### Descargar adjuntos por EntryID
+  
+Descargar adjuntos por EntryID en una carpeta
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|EntryID|ID del email que se desea obtener.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Descargar adjuntos|Carpeta donde guardar los documentos adjuntos.|C:\User\|
