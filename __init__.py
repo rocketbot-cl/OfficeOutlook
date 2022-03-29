@@ -25,6 +25,8 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
 """
 import os
 import sys
+import math
+import numpy as np
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + os.sep + 'OfficeOutlook' + os.sep
@@ -181,6 +183,16 @@ if module == "readEmail":
                 rec.PropertyAccessor.GetProperty('http://schemas.microsoft.com/mapi/proptag/0x39FE001E') or rec.Address
                 for rec in mail_.Recipients]
             from_ = mail_.SenderEmailAddress
+            try:
+                print(mail_.senton)
+                print("Was SentOn")
+            except:
+                pass
+            print("received")
+            print(mail_.ReceivedTime)
+            print(mail_.ReceivedTime.__str__())
+            print(mail_.ReceivedTime.__str__().replace("+00:00", ""))
+            print("b")
             data = {
                 "from": from_,
                 "subject": mail_.Subject,
@@ -349,6 +361,14 @@ if module == "extractTable":
 
             for each in data:
                 realData.append(each.values.tolist())
+            for indxi, i in enumerate(realData):
+
+                for indxc, cada in enumerate(i):
+
+                    for indexu, uno in enumerate(cada):
+                        if uno.__str__() == "nan":
+                            realData[indxi][indxc][indexu] = ""
+            
             SetVar(result_, realData)
     except Exception as e:
         PrintException()
