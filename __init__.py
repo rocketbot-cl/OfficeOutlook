@@ -117,9 +117,11 @@ if module == "search":
             inbox = instance.GetDefaultFolder('6')
 
         filter_ = filter_.lower()
-        if "domain" in filter_.lower():
-            domain = filter_
-            filter_ = ""
+        
+        # if "domain" in filter_:
+        #     domain = filter_
+        #     filter_ = ""
+        
         
         filter_2 = "@SQL="
 
@@ -127,7 +129,8 @@ if module == "search":
         filter_ = filter_.replace("*", "%")
         filter_ = filter_.replace("from", """"urn:schemas:httpmail:fromemail" like""")
         filter_ = filter_.replace(" and ", " AND ").replace(" or ", " OR ")
-
+        filter_ = filter_.replace("""domain '""", """"urn:schemas:httpmail:fromemail" like '%@""")
+        
         filter_ = filter_2 + filter_
 
         if type_ == "unread":
@@ -140,22 +143,22 @@ if module == "search":
         table_ = inbox.GetTable(filter_)
         while not table_.EndOfTable:
             r = table_.GetNextRow()
-            if domain:
-                filter_ = domain.split(' "')[-1][:-1]
-                mail_ = instance.GetItemFromID(r("EntryID"))
-                try:
-                    if mail_.SenderEmailType == "EX":
-                        address = mail_.Sender.GetExchangeUser().PrimarySmtpAddress
-                    else:
-                        address = mail_.SenderEmailAddress
+            # if domain:
+            #     filter_ = domain.split(' "')[-1][:-1]
+            #     mail_ = instance.GetItemFromID(r("EntryID"))
+            #     try:
+            #         if mail_.SenderEmailType == "EX":
+            #             address = mail_.Sender.GetExchangeUser().PrimarySmtpAddress
+            #         else:
+            #             address = mail_.SenderEmailAddress
 
-                    if filter_ in address:
-                        tmp.append(r("EntryID"))
-                except:
-                    continue
-            else:
-                tmp.append(r("EntryID"))
-
+            #         if filter_ in address:
+            #             tmp.append(r("EntryID"))
+            #     except:
+            #         continue
+            # else:
+            #     tmp.append(r("EntryID"))
+            tmp.append(r("EntryID"))
         if result_:
             SetVar(result_, tmp)
     except Exception as identifier:
