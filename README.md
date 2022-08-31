@@ -1,19 +1,16 @@
-
-
-
-
 # OfficeOutlook
   
 Connect to Outlook Desktop application.  
 
-## Howto install this module
+*Read this in other languages: [English](README.md), [Portugues](README.pr.md), [Español](README.es.md).*
+
+## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
 
 ## How to use this module
-In order to use this module, you have to add an account to Outlook and then you can connect 
-successfully.
+In order to use this module, you have to add an account to Outlook and then you can connect successfully.
 
 
 ## Overview
