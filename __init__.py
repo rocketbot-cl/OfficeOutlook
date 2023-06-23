@@ -395,3 +395,27 @@ if module == "get_attachments":
     except Exception as e:
         PrintException()
         raise e
+
+if module == "read_msg":
+    msg_file = GetParams("msg_file")
+    result_ = GetParams("result")
+
+    try:
+        outlook = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+        msg = outlook.OpenSharedItem(msg_file)
+        result_dict = {
+            "subject": msg.Subject,
+            "body": msg.Body,
+            "sender": msg.SenderEmailAddress,
+            "date": msg.SentOn.strftime("%Y-%m-%d %H:%M:%S"),
+            "to": msg.To,
+            "cc": msg.CC,
+            "bcc": msg.BCC,
+            "attachments": [att.FileName for att in msg.Attachments]
+        }
+        
+        SetVar(result_, result_dict)
+
+    except Exception as e:
+        PrintException()
+        raise e
