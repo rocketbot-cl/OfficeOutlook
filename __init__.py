@@ -27,6 +27,7 @@ import os
 import sys
 import math
 import numpy as np
+import time
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + os.sep + 'OfficeOutlook' + os.sep
@@ -401,8 +402,16 @@ if module == "read_msg":
     result_ = GetParams("result")
 
     try:
-        outlook = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-        msg = outlook.OpenSharedItem(msg_file)
+        try:
+            if not instance:
+                instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+        except:
+            print("Outlook is not running")
+            time.sleep(0.5)
+            instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+
+        msg_file = os.path.abspath(msg_file)
+        msg = instance.OpenSharedItem(msg_file)
         result_dict = {
             "subject": msg.Subject,
             "body": msg.Body,
