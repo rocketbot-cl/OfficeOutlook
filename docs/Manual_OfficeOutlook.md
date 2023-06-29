@@ -1,14 +1,15 @@
 # OfficeOutlook
   
-Connect to Outlook Desktop application.  
+Module to connect to Outlook Desktop application.  
 
-*Read this in other languages: [English](Manual_OfficeOutlook.md), [Portugues](Manual_OfficeOutlook.pr.md), [Español](Manual_OfficeOutlook.es.md).*
+*Read this in other languages: [English](Manual_OfficeOutlook.md), [Português](Manual_OfficeOutlook.pr.md), [Español](Manual_OfficeOutlook.es.md)*
   
-![banner](/docs/imgs/Banner_OfficeOutlook.png)
+![banner](imgs/Banner_OfficeOutlook.png)
 ## How to install this module
   
-__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
-
+To install the module in Rocketbot Studio, it can be done in two ways:
+1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
 ## How to use this module
 In order to use this module, you have to add an account to Outlook and then you can connect successfully.
@@ -128,3 +129,11 @@ Download attachments by EntryID in a folder
 | --- | --- | --- |
 |EntryID|ID of email that you want to obtain.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Download attachments|Path to folder where to save attachments.|C:\User\|
+
+### Read .msg file
+  
+Read .msg file and store the information in a variable
+|Parameters|Description|example|
+| --- | --- | --- |
+|Path to .msg file|Path of the .msg file that you want to read.|C:/Users/User/Desktop/file.msg|
+|Asignar resultado a variable|Name of the variable where the information of the .msg file will be stored.|Variable|
