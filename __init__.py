@@ -27,6 +27,7 @@ import os
 import sys
 import math
 import numpy as np
+import time
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + os.sep + 'OfficeOutlook' + os.sep
@@ -392,6 +393,38 @@ if module == "get_attachments":
             files.append(att.FileName)
         mail_.UnRead = False
         mail_.Save()
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "read_msg":
+    msg_file = GetParams("msg_file")
+    result_ = GetParams("result")
+
+    try:
+        try:
+            if not instance:
+                instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+        except:
+            print("Outlook is not running")
+            time.sleep(0.5)
+            instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+
+        msg_file = os.path.abspath(msg_file)
+        msg = instance.OpenSharedItem(msg_file)
+        result_dict = {
+            "subject": msg.Subject,
+            "body": msg.Body,
+            "sender": msg.SenderEmailAddress,
+            "date": msg.SentOn.strftime("%Y-%m-%d %H:%M:%S"),
+            "to": msg.To,
+            "cc": msg.CC,
+            "bcc": msg.BCC,
+            "attachments": [att.FileName for att in msg.Attachments]
+        }
+        
+        SetVar(result_, result_dict)
+
     except Exception as e:
         PrintException()
         raise e

@@ -1,18 +1,14 @@
 # OfficeOutlook
   
-Connect to Outlook Desktop application.  
+Módulo para conectar-se ao aplicativo de desktop do Outlook.  
 
-*Read this in other languages: [English](README.md), [Portugues](README.pr.md), [Español](README.es.md).*
+*Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
 
 ## Como instalar este módulo
   
-__Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
-
-
-
-
-## Como usar este módulo
-Para usar este módulo, você deve adicionar uma conta ao Outlook e, em seguida, poderá se conectar com sucesso.
+Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
+1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
+2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
 
 
 ## Overview
@@ -55,7 +51,10 @@ Salva um e-mail usando o Entry ID
 Extraia o conteúdo de uma tabela por e-mail EntryID fornecido
 
 13. Baixar anexos por EntryID  
-Baixar anexos por EntryID em uma pasta  
+Baixar anexos por EntryID em uma pasta
+
+14. Leia o arquivo .msg  
+Leia o arquivo .msg e armazene as informações em uma variável  
 
 
 
