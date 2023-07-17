@@ -137,3 +137,4 @@ Read .msg file and store the information in a variable
 | --- | --- | --- |
 |Path to .msg file|Path of the .msg file that you want to read.|C:/Users/User/Desktop/file.msg|
 |Asignar resultado a variable|Name of the variable where the information of the .msg file will be stored.|Variable|
+
