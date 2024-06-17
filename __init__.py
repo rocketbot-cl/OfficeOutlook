@@ -27,7 +27,6 @@ import os
 import sys
 import math
 import numpy as np
-import time
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + os.sep + 'OfficeOutlook' + os.sep
@@ -36,7 +35,24 @@ sys.path.append(cur_path + 'libs')
 from win32com import client
 import pandas as pd
 
-global instance
+global mod_office_outlook_sessions
+SESSION_DEFAULT = "default"
+# Initialize settings for the module here
+try:
+    if not mod_office_outlook_sessions:
+        mod_office_outlook_sessions = {SESSION_DEFAULT: {}}
+except NameError:
+    mod_office_outlook_sessions = {SESSION_DEFAULT: {}}
+
+session = GetParams("session")
+
+if not session:
+    session = SESSION_DEFAULT
+
+instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+if mod_office_outlook_sessions.get(session, {}).get("instance"):
+    instance = mod_office_outlook_sessions[session]["instance"]
+
 """
     Obtengo el modulo que fueron invocados
 """
@@ -45,12 +61,23 @@ module = GetParams("module")
 if module == "connect":
 
     whereToSave = GetParams("whereToSave")
+    email = GetParams("account")
+    
     connected = False
 
     try:
         instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+        
+        if email and email not in [x.DisplayName for x in instance.Accounts]:
+            raise Exception("Account not found")
+        
+        for account in instance.Accounts:
+            if account.DisplayName == email:
+                instance = account.DeliveryStore
+        
         # print(instance)
         if instance:
+            mod_office_outlook_sessions[session] = {"instance": instance}
             connected = True
 
     except Exception as e:
@@ -59,6 +86,7 @@ if module == "connect":
 
 
     SetVar(whereToSave, connected)
+  
 
 if module == "makeDir":
     folder_name = GetParams("folder_name")
@@ -92,6 +120,7 @@ if module == "search":
     type_ = GetParams("filter_type")
     result_ = GetParams("result")
     folderToSearchIn = GetParams("folderToSearchIn")
+    print(instance, mod_office_outlook_sessions)
     try:
         folderToSearchIn = int(folderToSearchIn)
     except:
@@ -139,6 +168,11 @@ if module == "search":
                 filter_ += """ AND "urn:schemas:httpmail:read"=0"""
             else:
                 filter_ += """"urn:schemas:httpmail:read"=0"""
+        if type_ == "all":
+            if len(filter_) > 5:
+                filter_ += """ AND "urn:schemas:httpmail:read"=1"""
+            else:
+                filter_ += """"urn:schemas:httpmail:read"=1"""
         inbox = instance.GetDefaultFolder(folderToSearchIn)
         print('filter', filter_)
         table_ = inbox.GetTable(filter_)
@@ -171,10 +205,14 @@ if module == "readEmail":
     entry_id = GetParams("entry_id")
     result_ = GetParams("result")
     download_ = GetParams("download")
-
+    
     if not instance:
         raise Exception("No Outlook connection")
-
+    
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+    
+    
+    
     try:
         mail_ = instance.GetItemFromID(entry_id)
         files = []
@@ -393,38 +431,6 @@ if module == "get_attachments":
             files.append(att.FileName)
         mail_.UnRead = False
         mail_.Save()
-    except Exception as e:
-        PrintException()
-        raise e
-
-if module == "read_msg":
-    msg_file = GetParams("msg_file")
-    result_ = GetParams("result")
-
-    try:
-        try:
-            if not instance:
-                instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-        except:
-            print("Outlook is not running")
-            time.sleep(0.5)
-            instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-
-        msg_file = os.path.abspath(msg_file)
-        msg = instance.OpenSharedItem(msg_file)
-        result_dict = {
-            "subject": msg.Subject,
-            "body": msg.Body,
-            "sender": msg.SenderEmailAddress,
-            "date": msg.SentOn.strftime("%Y-%m-%d %H:%M:%S"),
-            "to": msg.To,
-            "cc": msg.CC,
-            "bcc": msg.BCC,
-            "attachments": [att.FileName for att in msg.Attachments]
-        }
-        
-        SetVar(result_, result_dict)
-
     except Exception as e:
         PrintException()
         raise e

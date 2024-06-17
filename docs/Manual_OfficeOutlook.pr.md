@@ -1,15 +1,14 @@
 # OfficeOutlook
   
-Módulo para conectar-se ao aplicativo de desktop do Outlook.  
+Connect to Outlook Desktop application.  
 
-*Read this in other languages: [English](Manual_OfficeOutlook.md), [Português](Manual_OfficeOutlook.pr.md), [Español](Manual_OfficeOutlook.es.md)*
+*Read this in other languages: [English](Manual_OfficeOutlook.md), [Portugues](Manual_OfficeOutlook.pr.md), [Español](Manual_OfficeOutlook.es.md).*
   
-![banner](imgs/Banner_OfficeOutlook.png)
+![banner](/docs/imgs/Banner_OfficeOutlook.png)
 ## Como instalar este módulo
   
-Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
-1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
-2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
+__Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
+
 
 
 
@@ -131,11 +130,3 @@ Baixar anexos por EntryID em uma pasta
 | --- | --- | --- |
 |EntryID|ID do e-mail que você deseja obter.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Baixe os anexos|Caminho para a pasta onde salvar os anexos.|C:\User\|
-
-### Leia o arquivo .msg
-  
-Leia o arquivo .msg e armazene as informações em uma variável
-|Parâmetros|Descrição|exemplo|
-| --- | --- | --- |
-|Caminho para o arquivo .msg|Caminho do arquivo .msg que você deseja ler.|C:/Users/User/Desktop/file.msg|
-|Atribuir resultado à variável|Nome da variável onde as informações do arquivo .msg serão armazenadas.|Variável|
