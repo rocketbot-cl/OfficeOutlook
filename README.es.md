@@ -1,21 +1,25 @@
 # OfficeOutlook
   
-Módulo para conectarse a la aplicación de escritorio de Outlook.  
+Connect to Outlook Desktop application.  
 
-*Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
+*Read this in other languages: [English](README.md), [Portugues](README.pr.md), [Español](README.es.md).*
 
 ## Como instalar este módulo
   
-Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
-1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
-2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
+__Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
+
+
+
+
+## Como usar este módulo
+Para usar este módulo, tienes que agregar una cuenta a Outlook y luego podras conectarte correctamente.
 
 
 ## Overview
 
 
 1. Conectar a Outlook  
-Conectar a una instancia de la aplicación de Outlook
+Conectar a una insancia de la aplicación de Outlook
 
 2. Crear carpeta  
 Crea una carpeta en Outlook
@@ -51,10 +55,7 @@ Guarda un email usando el Entry ID
 Extrae una table del correo electrónico por EntryID
 
 13. Descargar adjuntos por EntryID  
-Descargar adjuntos por EntryID en una carpeta
-
-14. Leer archivo .msg  
-Leer archivo .msg y almacenar la información en una variable  
+Descargar adjuntos por EntryID en una carpeta  
 
 
 
