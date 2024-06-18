@@ -121,7 +121,6 @@ if module == "list_folders":
     if not instance:
         raise Exception("No Outlook connection")
     
-
     try:
         root_folder = instance.Folders.Item(1)        
         folders_list = []
