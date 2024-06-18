@@ -115,6 +115,35 @@ if module == "makeDir":
         PrintException()
         raise identifier
 
+if module == "list_folders":
+    result = GetParams('var')
+
+    if not instance:
+        raise Exception("No Outlook connection")
+    
+    try:
+        root_folder = instance.Folders.Item(1)        
+        folders_list = []
+        stack = [root_folder]
+
+        while stack:
+            current_folder = stack.pop()
+            folder_info = {
+                "Name": current_folder.Name,
+                "EntryID": current_folder.EntryID
+            }
+            folders_list.append(folder_info)
+            
+            for subfolder in current_folder.Folders:
+                stack.append(subfolder)
+
+        SetVar(result, folders_list)
+    except Exception as identifier:
+
+        PrintException()
+        raise identifier
+
+
 if module == "search":
     filter_ = GetParams("filter")
     type_ = GetParams("filter_type")
@@ -125,6 +154,7 @@ if module == "search":
         folderToSearchIn = int(folderToSearchIn)
     except:
         pass
+    
     if not folderToSearchIn:
         folderToSearchIn = 6
 
@@ -146,6 +176,7 @@ if module == "search":
             filter_ = ""
             inbox = instance.GetDefaultFolder('6')
 
+        
         filter_ = filter_.lower()
         
         # if "domain" in filter_:
