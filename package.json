@@ -47,6 +47,26 @@
       "form": {
         "css": "modal-lg",
         "inputs": [
+            {
+                "type": "input",
+                "placeholder": {
+                  "es": "rocketbot@outlook.com",
+                  "en": "rocketbot@outlook.com",
+                  "pr": "rocketbot@outlook.com"
+                },
+                "title": {
+                  "en": "Email:",
+                  "es": "Email:",
+                  "pr": "Email:"
+                },
+                "description": {
+                  "es": "Opcional. Email de la cuenta de Outlook. Debe ser un correo que esté enlazado en la Aplicación de Outlook.",
+                  "en": "Optional. Email of the Outlook account. Must be an email that is linked in the Outlook Application.",
+                  "pr": "Opcional. Email da conta do Outlook. Deve ser um e-mail que esteja vinculado no aplicativo Outlook."
+                },
+                "id": "account",
+                "css": "col-md-6"
+            },
           {
             "type": "input",
             "placeholder": {
@@ -65,6 +85,26 @@
               "pr": "Salve o resultado da conexão"
             },
             "id": "whereToSave",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
             "css": "col-md-6"
           }
         ]
@@ -213,6 +253,26 @@
         "inputs": [
           {
             "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
             "placeholder": "Variable",
             "title": {
               "es": "Asignar resultado a variable:",
@@ -266,7 +326,7 @@
         "css": "modal-lg",
         "inputs": [
           {
-            "type": "input",
+            "type": "textarea",
             "placeholder": {
               "es": "(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Aviso de compra'",
               "en": "(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Notification'",
@@ -352,6 +412,42 @@
           },
           {
             "type": "input",
+            "placeholder": "000000005B1FF6D8E324B041ABBA2628E77D1D520100C3B68E10F77511CEB4CD00AA00BBB6E600000000000A0000",
+            "title": {
+              "en": "Subfolder ID",
+              "es": "ID de subcarpeta",
+              "pr": "ID da subpasta"
+            },
+            "description": {
+              "es": "ID de la subcarpeta en la que se desea buscar. Para obtener el ID de la subcarpeta, se debe usar el módulo 'Listar carpetas'.",
+              "en": "ID of the subfolder you want to search in. To get the ID of the subfolder, you must use the 'List folders' module.",
+              "pr": "ID da subpasta na qual deseja pesquisar. Para obter o ID da subpasta, você deve usar o módulo 'Listar pastas'."
+            },
+            "id": "subfolder",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
             "placeholder": {
               "es": "Variable",
               "en": "Variable",
@@ -369,6 +465,7 @@
             },
             "id": "result",
             "css": "col-md-6",
+            "remove_vars": true,
             "help": {
               "es": "Ingresar variable sin {}",
               "en": "Enter variable name without {}",
@@ -430,7 +527,7 @@
               "pr": "ID do e-mail que você deseja obter"
             },
             "id": "entry_id",
-            "css": "col-md-6"
+            "css": "col-md-12"
           },
           {
             "type": "input",
@@ -451,11 +548,32 @@
             },
             "id": "result",
             "css": "col-md-6",
+            "remove_vars": true,
             "help": {
               "es": "Ingresar variable sin {}",
               "en": "Enter variable name without {}",
               "pr": "Insira o nome da variável sem {}"
             }
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
           },
           {
             "type": "folder_select",

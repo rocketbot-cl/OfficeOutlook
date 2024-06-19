@@ -122,24 +122,38 @@ if module == "list_folders":
         raise Exception("No Outlook connection")
     
     try:
-        root_folder = instance.Folders.Item(1)        
-        folders_list = []
-        stack = [root_folder]
+        AccountId = instance.StoreID
+        folders = instance.Parent.Folders
+        # root_folder = instance.Folders.Item(1)        
+        # stack = [root_folder]
 
-        while stack:
-            current_folder = stack.pop()
-            folder_info = {
-                "Name": current_folder.Name,
-                "EntryID": current_folder.EntryID
-            }
-            folders_list.append(folder_info)
-            
-            for subfolder in current_folder.Folders:
-                stack.append(subfolder)
+        def getFolders(folders, AccountId, prefix_name="", prefix_id=""):
+            global getFolders
+            folders_list = []
+            for folder in folders:
+                
+                if folder.Store.StoreID != AccountId:
+                    continue
+
+                folder_info = {
+                    "Name": prefix_name + folder.Name,
+                    "EntryID": prefix_id + folder.EntryID,
+                }
+                folders_list.append(folder_info)
+                subfolders = getFolders(
+                    folder.Folders, 
+                    AccountId, 
+                    prefix_name + folder.Name + "/",
+                    prefix_id + folder.EntryID + "/")
+
+                folders_list += subfolders
+
+            return folders_list
+
+        folders_list = getFolders(folders, AccountId)
 
         SetVar(result, folders_list)
     except Exception as identifier:
-
         PrintException()
         raise identifier
 
@@ -149,6 +163,7 @@ if module == "search":
     type_ = GetParams("filter_type")
     result_ = GetParams("result")
     folderToSearchIn = GetParams("folderToSearchIn")
+    subfolder = GetParams("subfolder")
     print(instance, mod_office_outlook_sessions)
     try:
         folderToSearchIn = int(folderToSearchIn)
@@ -204,7 +219,17 @@ if module == "search":
                 filter_ += """ AND "urn:schemas:httpmail:read"=1"""
             else:
                 filter_ += """"urn:schemas:httpmail:read"=1"""
-        inbox = instance.GetDefaultFolder(folderToSearchIn)
+        
+
+        if subfolder:
+            folders = instance.Parent.Folders
+            for folder in subfolder.split('/'):
+                mod_office_outlook_sessions["__private_folder"] = folder
+                inbox = [x for x in folders if x.Name == mod_office_outlook_sessions["__private_folder"]][0]
+                folders = inbox.Folders
+            # inbox = [x for x in instance.GetDefaultFolder(folderToSearchIn).Parent.Folders if x.EntryId == subfolder][0]
+        else:
+            inbox = instance.GetDefaultFolder(folderToSearchIn)
         print('filter', filter_)
         table_ = inbox.GetTable(filter_)
         while not table_.EndOfTable:
@@ -236,14 +261,13 @@ if module == "readEmail":
     entry_id = GetParams("entry_id")
     result_ = GetParams("result")
     download_ = GetParams("download")
+    subfolder = GetParams("subfolder")
     
     if not instance:
         raise Exception("No Outlook connection")
     
     instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-    
-    
-    
+
     try:
         mail_ = instance.GetItemFromID(entry_id)
         files = []
@@ -261,11 +285,6 @@ if module == "readEmail":
                 print("Was SentOn")
             except:
                 pass
-            print("received")
-            print(mail_.ReceivedTime)
-            print(mail_.ReceivedTime.__str__())
-            print(mail_.ReceivedTime.__str__().replace("+00:00", ""))
-            print("b")
             data = {
                 "from": from_,
                 "subject": mail_.Subject,
