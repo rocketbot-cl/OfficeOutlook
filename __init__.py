@@ -114,7 +114,13 @@ if module == "makeDir":
     except Exception as identifier:
         PrintException()
         raise identifier
-
+    
+def getCurrentFolders(instance):
+    try:
+        return instance.Parent.Folders
+    except:
+        return instance.Folders
+    
 if module == "list_folders":
     result = GetParams('var')
 
@@ -122,8 +128,12 @@ if module == "list_folders":
         raise Exception("No Outlook connection")
     
     try:
-        AccountId = instance.StoreID
-        folders = instance.Parent.Folders
+        try:
+            AccountId = instance.StoreID
+        except:
+            AccountId = None
+        
+        folders = getCurrentFolders(instance)
         # root_folder = instance.Folders.Item(1)        
         # stack = [root_folder]
 
@@ -132,7 +142,7 @@ if module == "list_folders":
             folders_list = []
             for folder in folders:
                 
-                if folder.Store.StoreID != AccountId:
+                if AccountId is not None and folder.Store.StoreID != AccountId:
                     continue
 
                 folder_info = {
@@ -222,7 +232,7 @@ if module == "search":
         
 
         if subfolder:
-            folders = instance.Parent.Folders
+            folders = getCurrentFolders(instance)
             for folder in subfolder.split('/'):
                 mod_office_outlook_sessions["__private_folder"] = folder
                 inbox = [x for x in folders if x.Name == mod_office_outlook_sessions["__private_folder"]][0]

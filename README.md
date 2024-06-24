@@ -1,16 +1,18 @@
+
+
+
+
 # OfficeOutlook
   
-Connect to Outlook Desktop application.  
+Module to connect to Outlook Desktop application.  
 
-*Read this in other languages: [English](README.md), [Portugues](README.pr.md), [Español](README.es.md).*
+*Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
 
 ## How to install this module
   
-__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
-
-
-## How to use this module
-In order to use this module, you have to add an account to Outlook and then you can connect successfully.
+To install the module in Rocketbot Studio, it can be done in two ways:
+1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
 
 ## Overview
@@ -22,38 +24,44 @@ Connect to an Outlook application instance
 2. Create folder  
 Create a folder on Outlook
 
-3. Search Email by Filter  
+3. List Folders  
+List all Folders
+
+4. Search Email by Filter  
 Search by filter provided
 
-4. Read email by EntryID  
+5. Read email by EntryID  
 Read email data by EntryID provided
 
-5. Move email to folder  
+6. Move email to folder  
 Move email data by EntryID provided
 
-6. Move email to folder by Name  
+7. Move email to folder by Name  
 Move email data by Name provided. (Only folder into Inbox)
 
-7. Mark email as unread  
+8. Mark email as unread  
 Mark email as unread by EntryID provided
 
-8. Send Email  
+9. Send Email  
 Send email, before you must configurate the server
 
-9. Reply Email  
+10. Reply Email  
 Reply mail from Entry ID
 
-10. Forward Email  
+11. Forward Email  
 Forward mail from Entry ID
 
-11. Save Email  
+12. Save Email  
 Saves a mail from Entry ID
 
-12. Extract table from email by EntryID  
+13. Extract table from email by EntryID  
 Extract the content of a table by email EntryID provided
 
-13. Download attachments by EntryID  
-Download attachments by EntryID in a folder  
+14. Download attachments by EntryID  
+Download attachments by EntryID in a folder
+
+15. Read .msg file  
+Read .msg file and store the information in a variable  
 
 
 

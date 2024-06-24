@@ -1,29 +1,31 @@
+
+
+
+
 # OfficeOutlook
   
-Connect to Outlook Desktop application.  
+Módulo para conectarse a la aplicación de escritorio de Outlook.  
 
-*Read this in other languages: [English](Manual_OfficeOutlook.md), [Portugues](Manual_OfficeOutlook.pr.md), [Español](Manual_OfficeOutlook.es.md).*
+*Read this in other languages: [English](Manual_OfficeOutlook.md), [Português](Manual_OfficeOutlook.pr.md), [Español](Manual_OfficeOutlook.es.md)*
   
-![banner](/docs/imgs/Banner_OfficeOutlook.png)
+![banner](imgs/Banner_OfficeOutlook.png)
 ## Como instalar este módulo
   
-__Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
-
-
-
-
-## Como usar este módulo
-Para usar este módulo, tienes que agregar una cuenta a Outlook y luego podras conectarte correctamente.
+Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
+1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
+2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
 
 
 ## Descripción de los comandos
 
 ### Conectar a Outlook
   
-Conectar a una insancia de la aplicación de Outlook
+Conectar a una instancia de la aplicación de Outlook
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
+|Email|Opcional. Email de la cuenta de Outlook. Debe ser un correo que esté enlazado en la Aplicación de Outlook.|rocketbot@outlook.com|
 |Variable donde guardar el resultado|Guardar el resultado de la conexión.|result|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
 ### Crear carpeta
   
@@ -34,6 +36,14 @@ Crea una carpeta en Outlook
 |Carpeta destino|Carpeta donde se quiere crear la nueva (opcional).|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEE4E12200|
 |Asignar a variable|Guardar el resultado de la creación de la carpeta.|Variable|
 
+### Listar Carpetas
+  
+Devuelve todas las carpetas
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
+|Asignar resultado a variable|Variable donde se almacena el resultado.|Variable|
+
 ### Buscar por filtro
   
 Buscar correos por filtros
@@ -42,6 +52,8 @@ Buscar correos por filtros
 |Filtro|Filtro que se desea utilizar.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Aviso de compra'|
 |Buscar en|Filtro para emails leidos y no leidos.|Todos|
 |Carpeta|Carpeta en la que se desea buscar.|Inbox|
+|Nombre de subcarpeta|Nombre de la subcarpeta en la que se desea buscar. Para obtener el nombre de todas las subcarpetas existentes, se debe usar el módulo 'Listar carpetas'.|rocketbot@outlook.com/Folder Name|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 |Asignar a variable|Guardar el resultado de la búsqueda.|Variable|
 
 ### Leer email por EntryID
@@ -51,6 +63,7 @@ Lea la información del correo electrónico por EntryID
 | --- | --- | --- |
 |EntryID|ID del email que se desea obtener.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Asignar a variable|Guardar la lectura del email.|Variable|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 |Descargar adjuntos|Carpeta donde guardar los documentos adjuntos.|C:\User\|
 
 ### Mover email a una carpeta
@@ -81,8 +94,8 @@ Marca un email como no leído por EntryID
 Envia un email, previamente debe configurar el servidor
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Para|Email de los destinatarios.|to@mail.com, to2@mail.com|
-|Copia|Email de los destinatarios.|cc@mail.com, cc2@mail.com|
+|Para|Email de los destinatarios.|to@mail.com; to2@mail.com|
+|Copia|Email de los destinatarios.|cc@mail.com; cc2@mail.com|
 |Asunto|Asunto que se desea dar.|Nuevo mail|
 |Mensaje|Mesaje del mail.|Esto es un mensaje de prueba|
 |Archivo Adjunto|Archivo adjunto que se desea enviar.|C:\User\Desktop\test.txt|
@@ -130,3 +143,11 @@ Descargar adjuntos por EntryID en una carpeta
 | --- | --- | --- |
 |EntryID|ID del email que se desea obtener.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Descargar adjuntos|Carpeta donde guardar los documentos adjuntos.|C:\User\|
+
+### Leer archivo .msg
+  
+Leer archivo .msg y almacenar la información en una variable
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Ruta del archivo .msg|Ruta del archivo .msg que se desea leer.|C:/Users/User/Desktop/file.msg|
+|Asignar resultado a variable|Nombre de la variable donde se almacenará la información del archivo .msg.|Variable|

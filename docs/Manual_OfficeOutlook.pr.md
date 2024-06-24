@@ -1,19 +1,19 @@
+
+
+
+
 # OfficeOutlook
   
-Connect to Outlook Desktop application.  
+Módulo para conectar-se ao aplicativo de desktop do Outlook.  
 
-*Read this in other languages: [English](Manual_OfficeOutlook.md), [Portugues](Manual_OfficeOutlook.pr.md), [Español](Manual_OfficeOutlook.es.md).*
+*Read this in other languages: [English](Manual_OfficeOutlook.md), [Português](Manual_OfficeOutlook.pr.md), [Español](Manual_OfficeOutlook.es.md)*
   
-![banner](/docs/imgs/Banner_OfficeOutlook.png)
+![banner](imgs/Banner_OfficeOutlook.png)
 ## Como instalar este módulo
   
-__Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
-
-
-
-
-## Como usar este módulo
-Para usar este módulo, você deve adicionar uma conta ao Outlook e, em seguida, poderá se conectar com sucesso.
+Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
+1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
+2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
 
 
 ## Descrição do comando
@@ -23,7 +23,9 @@ Para usar este módulo, você deve adicionar uma conta ao Outlook e, em seguida,
 Conectar-se a uma instância do aplicativo Outlook
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
+|Email|Opcional. Email da conta do Outlook. Deve ser um e-mail que esteja vinculado no aplicativo Outlook.|rocketbot@outlook.com|
 |Variável para salvar o resultado da conexão|Salve o resultado da conexão|result|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Criar pasta
   
@@ -34,6 +36,14 @@ Criar uma pasta no Outlook
 |Pasta de destino|Pasta onde você deseja criar a nova pasta (opcional).|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEE4E12200|
 |Atribuir à variável|Salve o resultado da criação da pasta.|Variável|
 
+### Listar Pastas
+  
+Devolve todas as pastas
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
+|Salve o resultado da pesquisa|Variável onde o resultado é armazenado.|Variável|
+
 ### Pesquisar e-mail por filtro
   
 Pesquisar por filtro fornecido
@@ -42,6 +52,8 @@ Pesquisar por filtro fornecido
 |Filtro|Filtro que deseja usar.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Aviso de compra'|
 |Procure em|Filtre por e-mails lidos e não lidos|Todos|
 |Pasta|Pasta na qual deseja pesquisar.|Inbox|
+|Nome da subpasta|Nome da subpasta em que se deseja procurar. Para obter o nome de todas as subpastas existentes, deve-se usar o módulo 'Listar pastas'.|rocketbot@outlook.com/Folder Name|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 |Atribuir a variável|Salve o resultado da pesquisa.|Variável|
 
 ### Ler e-mail por EntryID
@@ -51,6 +63,7 @@ Ler dados de e-mail por EntryID fornecido
 | --- | --- | --- |
 |EntryID|ID do e-mail que você deseja obter|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Atribuir a variável|Salve o e-mail lido.|Variável|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 |Baixar anexos|Caminho para a pasta onde salvar os anexos.|C:\User\|
 
 ### Mover e-mail para pasta
@@ -81,8 +94,8 @@ Marcar e-mail como não lido pelo EntryID fornecido
 Envie e-mail, antes de configurar o servidor
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-|To|Emails dos destinatários.|to@mail.com, to2@mail.com|
-|Cc|Emails dos destinatários.|cc@mail.com, cc2@mail.com|
+|To|Emails dos destinatários.|to@mail.com; to2@mail.com|
+|Cc|Emails dos destinatários.|cc@mail.com; cc2@mail.com|
 |Assunto|Assunto do email|Novo mail|
 |Body|Mensagem do e-mail|Esta é uma mensagem de teste|
 |Arquivo anexo|Arquivo anexado que você deseja enviar.|C:\User\Desktop\test.txt|
@@ -130,3 +143,11 @@ Baixar anexos por EntryID em uma pasta
 | --- | --- | --- |
 |EntryID|ID do e-mail que você deseja obter.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Baixe os anexos|Caminho para a pasta onde salvar os anexos.|C:\User\|
+
+### Leia o arquivo .msg
+  
+Leia o arquivo .msg e armazene as informações em uma variável
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Caminho para o arquivo .msg|Caminho do arquivo .msg que você deseja ler.|C:/Users/User/Desktop/file.msg|
+|Atribuir resultado à variável|Nome da variável onde as informações do arquivo .msg serão armazenadas.|Variável|
