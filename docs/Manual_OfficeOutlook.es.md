@@ -16,6 +16,11 @@ Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
 
 
+
+## Como usar este módulo
+Para usar este módulo, tienes que agregar una cuenta a Outlook y luego podras conectarte correctamente.
+
+
 ## Descripción de los comandos
 
 ### Conectar a Outlook
@@ -42,7 +47,7 @@ Devuelve todas las carpetas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
-|Asignar resultado a variable|Variable donde se almacena el resultado.|Variable|
+|Asignar resultado a variable||Variable|
 
 ### Buscar por filtro
   
@@ -52,7 +57,7 @@ Buscar correos por filtros
 |Filtro|Filtro que se desea utilizar.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Aviso de compra'|
 |Buscar en|Filtro para emails leidos y no leidos.|Todos|
 |Carpeta|Carpeta en la que se desea buscar.|Inbox|
-|Nombre de subcarpeta|Nombre de la subcarpeta en la que se desea buscar. Para obtener el nombre de todas las subcarpetas existentes, se debe usar el módulo 'Listar carpetas'.|rocketbot@outlook.com/Folder Name|
+|ID de subcarpeta|ID de la subcarpeta en la que se desea buscar. Para obtener el ID de la subcarpeta, se debe usar el módulo 'Listar carpetas'.|000000005B1FF6D8E324B041ABBA2628E77D1D520100C3B68E10F775|
 |Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 |Asignar a variable|Guardar el resultado de la búsqueda.|Variable|
 
@@ -64,6 +69,7 @@ Lea la información del correo electrónico por EntryID
 |EntryID|ID del email que se desea obtener.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Asignar a variable|Guardar la lectura del email.|Variable|
 |Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
+|Incluir HTML|Incluye al resultado el HTML del correo|True|
 |Descargar adjuntos|Carpeta donde guardar los documentos adjuntos.|C:\User\|
 
 ### Mover email a una carpeta
@@ -94,8 +100,8 @@ Marca un email como no leído por EntryID
 Envia un email, previamente debe configurar el servidor
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Para|Email de los destinatarios.|to@mail.com; to2@mail.com|
-|Copia|Email de los destinatarios.|cc@mail.com; cc2@mail.com|
+|Para|Email de los destinatarios.|to@mail.com, to2@mail.com|
+|Copia|Email de los destinatarios.|cc@mail.com, cc2@mail.com|
 |Asunto|Asunto que se desea dar.|Nuevo mail|
 |Mensaje|Mesaje del mail.|Esto es un mensaje de prueba|
 |Archivo Adjunto|Archivo adjunto que se desea enviar.|C:\User\Desktop\test.txt|

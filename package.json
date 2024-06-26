@@ -412,7 +412,7 @@
           },
           {
             "type": "input",
-            "placeholder": "000000005B1FF6D8E324B041ABBA2628E77D1D520100C3B68E10F77511CEB4CD00AA00BBB6E600000000000A0000",
+            "placeholder": "000000005B1FF6D8E324B041ABBA2628E77D1D520100C3B68E10F775",
             "title": {
               "en": "Subfolder ID",
               "es": "ID de subcarpeta",
@@ -589,8 +589,8 @@
             },
             "description": {
               "es": "Incluye al resultado el HTML del correo",
-              "en": "Save the read email.",
-              "pr": "Salve o e-mail lido."
+              "en": "Include the email HTML in the result.",
+              "pr": "Inclua o HTML do e-mail no resultado."
             },
             "id": "includeHTML",
             "css": "col-md-4"

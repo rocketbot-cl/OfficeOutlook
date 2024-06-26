@@ -15,6 +15,9 @@ To install the module in Rocketbot Studio, it can be done in two ways:
 1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
 2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
+## How to use this module
+In order to use this module, you have to add an account to Outlook and then you can connect successfully.
+
 
 ## Description of the commands
 
@@ -42,7 +45,7 @@ List all Folders
 |Parameters|Description|example|
 | --- | --- | --- |
 |Outlook Session|Assign a session to the Outlook connection.|session|
-|Asign result to var|Var where the result is stored.|Variable|
+|Asign result to var||Variable|
 
 ### Search Email by Filter
   
@@ -52,7 +55,7 @@ Search by filter provided
 |Filter|Filter you want to use.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Notification'|
 |Search in|Filter for emails read and unread.|All|
 |Folder|Folder you want to search in.|Inbox|
-|Subfolder Name|Name of the subfolder to search in. To obtain the names of all existing subfolders, use the 'List folders' module.|rocketbot@outlook.com/Folder Name|
+|Subfolder ID|ID of the subfolder you want to search in. To get the ID of the subfolder, you must use the 'List folders' module.|000000005B1FF6D8E324B041ABBA2628E77D1D520100C3B68E10F775|
 |Outlook Session|Assign a session to the Outlook connection.|session|
 |Set to variable|Save the result of search.|Variable|
 
@@ -64,6 +67,7 @@ Read email data by EntryID provided
 |EntryID|ID of the email that you want to obtain.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Set to variable|Save the read email.|Variable|
 |Outlook Session|Assign a session to the Outlook connection.|session|
+|Include HTML|Include the email HTML in the result.|True|
 |Download attachments|Path to folder where to save attachments.|C:\User\|
 
 ### Move email to folder
@@ -94,8 +98,8 @@ Mark email as unread by EntryID provided
 Send email, before you must configurate the server
 |Parameters|Description|example|
 | --- | --- | --- |
-|To|Emails of recipients.|to@mail.com; to2@mail.com|
-|Cc|Emails of recipients.|cc@mail.com; cc2@mail.com|
+|To|Emails of recipients.|to@mail.com, to2@mail.com|
+|Cc|Emails of recipients.|cc@mail.com, cc2@mail.com|
 |Subject|Subject to send it with.|New mail|
 |Body|Body of the email.|This is a test message|
 |Attached File|Attached file that you want to send.|C:\User\Desktop\test.txt|
