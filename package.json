@@ -273,11 +273,7 @@
           },
           {
             "type": "input",
-            "placeholder": {
-              "es": "Variable",
-              "en": "Variable",
-              "pr": "Variável"
-            },
+            "placeholder": "Variable",
             "title": {
               "es": "Asignar resultado a variable:",
               "en": "Asign result to var:",
@@ -287,11 +283,6 @@
               "es": "Nombre de variable sin {}",
               "en": "Var name without {}",
               "pr": "Nome da variável sem {}"
-            },
-            "description": {
-              "es": "Variable donde se almacena el resultado.",
-              "en": "Var where the result is stored.",
-              "pr": "Variável onde o resultado é armazenado."
             },
             "remove_vars": true,
             "id": "var",
@@ -421,16 +412,16 @@
           },
           {
             "type": "input",
-            "placeholder": "rocketbot@outlook.com/Folder Name",
+            "placeholder": "000000005B1FF6D8E324B041ABBA2628E77D1D520100C3B68E10F77511CEB4CD00AA00BBB6E600000000000A0000",
             "title": {
-              "en": "Subfolder Name",
-              "es": "Nombre de subcarpeta",
-              "pr": "Nome da subpasta"
+              "en": "Subfolder ID",
+              "es": "ID de subcarpeta",
+              "pr": "ID da subpasta"
             },
             "description": {
-              "es": "Nombre de la subcarpeta en la que se desea buscar. Para obtener el nombre de todas las subcarpetas existentes, se debe usar el módulo 'Listar carpetas'.",
-              "en": "Name of the subfolder to search in. To obtain the names of all existing subfolders, use the 'List folders' module.",
-              "pr": "Nome da subpasta em que se deseja procurar. Para obter o nome de todas as subpastas existentes, deve-se usar o módulo 'Listar pastas'."
+              "es": "ID de la subcarpeta en la que se desea buscar. Para obtener el ID de la subcarpeta, se debe usar el módulo 'Listar carpetas'.",
+              "en": "ID of the subfolder you want to search in. To get the ID of the subfolder, you must use the 'List folders' module.",
+              "pr": "ID da subpasta na qual deseja pesquisar. Para obter o ID da subpasta, você deve usar o módulo 'Listar pastas'."
             },
             "id": "subfolder",
             "css": "col-md-12"
@@ -556,7 +547,7 @@
               "pr": "Salve o e-mail lido."
             },
             "id": "result",
-            "css": "col-md-6",
+            "css": "col-md-4",
             "remove_vars": true,
             "help": {
               "es": "Ingresar variable sin {}",
@@ -582,7 +573,27 @@
               "pr": "Atribua uma sessão à conexão do Outlook"
             },
             "id": "session",
-            "css": "col-md-6"
+            "css": "col-md-4"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "True",
+              "en": "True",
+              "pr": "True"
+            },
+            "title": {
+              "es": "Incluir HTML",
+              "en": "Include HTML",
+              "pr": "Incluir HTML"
+            },
+            "description": {
+              "es": "Incluye al resultado el HTML del correo",
+              "en": "Save the read email.",
+              "pr": "Salve o e-mail lido."
+            },
+            "id": "includeHTML",
+            "css": "col-md-4"
           },
           {
             "type": "folder_select",
@@ -856,9 +867,9 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "to@mail.com; to2@mail.com",
-              "en": "to@mail.com; to2@mail.com",
-              "pr": "to@mail.com; to2@mail.com"
+              "es": "to@mail.com, to2@mail.com",
+              "en": "to@mail.com, to2@mail.com",
+              "pr": "to@mail.com, to2@mail.com"
             },
             "title": {
               "es": "Para:",
@@ -871,9 +882,9 @@
               "pr": "Emails dos destinatários."
             },
             "help": {
-              "es": "Para varios destinatarios separar por punto y coma",
-              "en": "For multiple recipients, separate with semicolons",
-              "pr": "Para múltiplos destinatários, separar por ponto e vírgula"
+              "es": "Para varios destinatarios separar por coma",
+              "en": "For multiple recipients, comma separated",
+              "pr": "Para vários destinatários, separados por vírgulas"
             },
             "id": "to",
             "css": "col-md-12"
@@ -881,9 +892,9 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "cc@mail.com; cc2@mail.com",
-              "en": "cc@mail.com; cc2@mail.com",
-              "pr": "cc@mail.com; cc2@mail.com"
+              "es": "cc@mail.com, cc2@mail.com",
+              "en": "cc@mail.com, cc2@mail.com",
+              "pr": "cc@mail.com, cc2@mail.com"
             },
             "title": {
               "es": "Copia:",
@@ -896,9 +907,9 @@
               "pr": "Emails dos destinatários."
             },
             "help": {
-              "es": "Para varios destinatarios separar por punto y coma",
-              "en": "For multiple recipients, separate with semicolons",
-              "pr": "Para múltiplos destinatários, separar por ponto e vírgula"
+              "es": "para varios destinatarios separar por coma",
+              "en": "for multiple recipients, comma separated",
+              "pr": "Para vários destinatários, separados por vírgulas"
             },
             "id": "cc",
             "css": "col-md-12"

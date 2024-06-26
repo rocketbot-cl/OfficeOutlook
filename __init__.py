@@ -120,13 +120,13 @@ def getCurrentFolders(instance):
         return instance.Parent.Folders
     except:
         return instance.Folders
-    
+
 if module == "list_folders":
     result = GetParams('var')
 
     if not instance:
         raise Exception("No Outlook connection")
-    
+
     try:
         try:
             AccountId = instance.StoreID
@@ -151,8 +151,8 @@ if module == "list_folders":
                 }
                 folders_list.append(folder_info)
                 subfolders = getFolders(
-                    folder.Folders, 
-                    AccountId, 
+                    folder.Folders,
+                    AccountId,
                     prefix_name + folder.Name + "/",
                     prefix_id + folder.EntryID + "/")
 
@@ -272,6 +272,7 @@ if module == "readEmail":
     result_ = GetParams("result")
     download_ = GetParams("download")
     subfolder = GetParams("subfolder")
+    includeHTML = GetParams("includeHTML")
     
     if not instance:
         raise Exception("No Outlook connection")
@@ -303,6 +304,9 @@ if module == "readEmail":
                 "files": files,
                 "to": ",".join(to_)
             }
+            if includeHTML == "true" or includeHTML == "True":
+                data["html"] = mail_.HTMLBody
+
             SetVar(result_, data)
         mail_.UnRead = False
         mail_.Save()
