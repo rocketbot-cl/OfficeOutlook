@@ -63,16 +63,16 @@ if module == "connect":
 
     whereToSave = GetParams("whereToSave")
     email = GetParams("account")
-    show_app = GetParams("showApp")
+    # show_app = GetParams("showApp")
 
-    show_app = str(show_app) == "true" or str(show_app) == "True"
+    # show_app = str(show_app) == "true" or str(show_app) == "True"
 
     connected = False
 
     try:
         instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-        if show_app:
-            pass
+        # if show_app:
+        #     pass
 
         if email and email not in [x.DisplayName for x in instance.Accounts]:
             raise Exception("Account not found")
