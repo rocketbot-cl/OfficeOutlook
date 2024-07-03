@@ -47,26 +47,26 @@
       "form": {
         "css": "modal-lg",
         "inputs": [
-            {
-                "type": "input",
-                "placeholder": {
-                  "es": "rocketbot@outlook.com",
-                  "en": "rocketbot@outlook.com",
-                  "pr": "rocketbot@outlook.com"
-                },
-                "title": {
-                  "en": "Email:",
-                  "es": "Email:",
-                  "pr": "Email:"
-                },
-                "description": {
-                  "es": "Opcional. Email de la cuenta de Outlook. Debe ser un correo que esté enlazado en la Aplicación de Outlook.",
-                  "en": "Optional. Email of the Outlook account. Must be an email that is linked in the Outlook Application.",
-                  "pr": "Opcional. Email da conta do Outlook. Deve ser um e-mail que esteja vinculado no aplicativo Outlook."
-                },
-                "id": "account",
-                "css": "col-md-6"
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "rocketbot@outlook.com",
+              "en": "rocketbot@outlook.com",
+              "pr": "rocketbot@outlook.com"
             },
+            "title": {
+              "en": "Email:",
+              "es": "Email:",
+              "pr": "Email:"
+            },
+            "description": {
+              "es": "Opcional. Email de la cuenta de Outlook. Debe ser un correo que esté enlazado en la Aplicación de Outlook.",
+              "en": "Optional. Email of the Outlook account. Must be an email that is linked in the Outlook Application.",
+              "pr": "Opcional. Email da conta do Outlook. Deve ser um e-mail que esteja vinculado no aplicativo Outlook."
+            },
+            "id": "account",
+            "css": "col-md-6"
+          },
           {
             "type": "input",
             "placeholder": {
@@ -85,6 +85,26 @@
               "pr": "Salve o resultado da conexão"
             },
             "id": "whereToSave",
+            "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "True",
+              "en": "True",
+              "pr": "True"
+            },
+            "title": {
+              "en": "Show Application",
+              "es": "Mostrar aplicación",
+              "pr": "Mostrar aplicativo"
+            },
+            "description": {
+              "es": "Este casilla permite mostrar la aplicación de Outlook. Si no está marcado, la aplicación se ejecutará en segundo plano.",
+              "en": "This checkbox allows you to show the Outlook application. If it is not checked, the application will run in the background.",
+              "pr": "Esta caixa de seleção permite que você mostre o aplicativo Outlook. Se não estiver marcado, o aplicativo será executado em segundo plano."
+            },
+            "id": "showApp",
             "css": "col-md-6"
           },
           {
@@ -935,7 +955,7 @@
             "css": "col-md-12"
           },
           {
-            "type": "input",
+            "type": "textarea",
             "placeholder": {
               "es": "Esto es un mensaje de prueba",
               "en": "This is a test message",
@@ -947,9 +967,14 @@
               "pr": "Body:"
             },
             "description": {
-              "es": "Mesaje del mail.",
-              "en": "Body of the email.",
-              "pr": "Mensagem do e-mail"
+                "es": "Puedes usar html para dar estilos a tu correo. Ejemplo: <b>Texto en negrita</b>. Para imagenes locales, usar <img src='ruta imagen en png'>",
+                "en": "You can use html to style your email. Example: <b>Bold text</b>. For local images, use <img src='png image path'>",
+                "pr": "Você pode usar html para estilizar seu e-mail. Exemplo: <b>Texto em negrito</b>. Para imagens locais, use <img src='caminho da imagem png'>"
+            },
+            "help": {
+              "es": "Puedes usar html para dar estilos a tu correo. Ejemplo: <b>Texto en negrita</b>. Para imagenes locales, usar <img src='ruta imagen en png'>",
+              "en": "You can use html to style your email. Example: <b>Bold text</b>. For local images, use <img src='png image path'>",
+              "pr": "Você pode usar html para estilizar seu e-mail. Exemplo: <b>Texto em negrito</b>. Para imagens locais, use <img src='caminho da imagem png'>"
             },
             "id": "body",
             "css": "col-md-12"
