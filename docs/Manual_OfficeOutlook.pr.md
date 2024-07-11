@@ -57,7 +57,7 @@ Pesquisar por filtro fornecido
 |Filtro|Filtro que deseja usar.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Aviso de compra'|
 |Procure em|Filtre por e-mails lidos e não lidos|Todos|
 |Pasta|Pasta na qual deseja pesquisar.|Inbox|
-|ID da subpasta|ID da subpasta na qual deseja pesquisar. Para obter o ID da subpasta, você deve usar o módulo 'Listar pastas'.|000000005B1FF6D8E324B041ABBA2628E77D1D520100C3B68E10F775|
+|Subpasta|Caminho para a subpasta que deseja pesquisar. Para obter o caminho para a subpasta, você deve usar o módulo 'Listar pastas'.|rocketbot@outlook.com/RocketFolder|
 |Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 |Atribuir a variável|Salve o resultado da pesquisa.|Variável|
 
@@ -103,7 +103,7 @@ Envie e-mail, antes de configurar o servidor
 |To|Emails dos destinatários.|to@mail.com, to2@mail.com|
 |Cc|Emails dos destinatários.|cc@mail.com, cc2@mail.com|
 |Assunto|Assunto do email|Novo mail|
-|Body|Mensagem do e-mail|Esta é uma mensagem de teste|
+|Body|Você pode usar html para estilizar seu e-mail. Exemplo <b>Texto em negrito</b>. Para imagens locais, use <img src='caminho da imagem png'>|Esta é uma mensagem de teste|
 |Arquivo anexo|Arquivo anexado que você deseja enviar.|C:\User\Desktop\test.txt|
 |Pasta (vários arquivos)|Pasta que contém arquivos anexados que você deseja enviar.|C:\User\Desktop\Files|
 |Confirmação de leitura||True|

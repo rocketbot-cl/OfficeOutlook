@@ -55,7 +55,7 @@ Search by filter provided
 |Filter|Filter you want to use.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Notification'|
 |Search in|Filter for emails read and unread.|All|
 |Folder|Folder you want to search in.|Inbox|
-|Subfolder ID|ID of the subfolder you want to search in. To get the ID of the subfolder, you must use the 'List folders' module.|000000005B1FF6D8E324B041ABBA2628E77D1D520100C3B68E10F775|
+|Subfolder|Path to the subfolder you want to search in. To get the path to the subfolder, you must use the 'List folders' module.|rocketbot@outlook.com/RocketFolder|
 |Outlook Session|Assign a session to the Outlook connection.|session|
 |Set to variable|Save the result of search.|Variable|
 
@@ -101,7 +101,7 @@ Send email, before you must configurate the server
 |To|Emails of recipients.|to@mail.com, to2@mail.com|
 |Cc|Emails of recipients.|cc@mail.com, cc2@mail.com|
 |Subject|Subject to send it with.|New mail|
-|Body|Body of the email.|This is a test message|
+|Body|You can use html to style your email. Example <b>Bold text</b>. For local images, use <img src='png image path'>|This is a test message|
 |Attached File|Attached file that you want to send.|C:\User\Desktop\test.txt|
 |Folder (Multiple files)|Folder that contains attached files which you want to send.|C:\User\Desktop\Files|
 |Read Receipt||True|

@@ -57,7 +57,7 @@ Buscar correos por filtros
 |Filtro|Filtro que se desea utilizar.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Aviso de compra'|
 |Buscar en|Filtro para emails leidos y no leidos.|Todos|
 |Carpeta|Carpeta en la que se desea buscar.|Inbox|
-|ID de subcarpeta|ID de la subcarpeta en la que se desea buscar. Para obtener el ID de la subcarpeta, se debe usar el módulo 'Listar carpetas'.|000000005B1FF6D8E324B041ABBA2628E77D1D520100C3B68E10F775|
+|Subcarpeta|Ruta a la subcarpeta en la que desea buscar. Para obtener la ruta a la subcarpeta, debe utilizar el módulo 'Listar carpetas'.|rocketbot@outlook.com/RocketFolder|
 |Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 |Asignar a variable|Guardar el resultado de la búsqueda.|Variable|
 
@@ -103,7 +103,7 @@ Envia un email, previamente debe configurar el servidor
 |Para|Email de los destinatarios.|to@mail.com, to2@mail.com|
 |Copia|Email de los destinatarios.|cc@mail.com, cc2@mail.com|
 |Asunto|Asunto que se desea dar.|Nuevo mail|
-|Mensaje|Mesaje del mail.|Esto es un mensaje de prueba|
+|Mensaje|Puedes usar html para dar estilos a tu correo. Ejemplo <b>Texto en negrita</b>. Para imagenes locales, usar <img src='ruta imagen en png'>|Esto es un mensaje de prueba|
 |Archivo Adjunto|Archivo adjunto que se desea enviar.|C:\User\Desktop\test.txt|
 |Carpeta (Varios archivos)|Carpeta que contiene archivos adjuntos que se desea enviar.|C:\User\Desktop\Files|
 |Confirmación de lectura||True|
