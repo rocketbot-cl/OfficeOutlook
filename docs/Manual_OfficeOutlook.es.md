@@ -1,3 +1,7 @@
+
+
+
+
 # OfficeOutlook
   
 Módulo para conectarse a la aplicación de escritorio de Outlook.  
@@ -21,10 +25,12 @@ Para usar este módulo, tienes que agregar una cuenta a Outlook y luego podras c
 
 ### Conectar a Outlook
   
-Conectar a una insancia de la aplicación de Outlook
+Conectar a una instancia de la aplicación de Outlook
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
+|Email|Opcional. Email de la cuenta de Outlook. Debe ser un correo que esté enlazado en la Aplicación de Outlook.|rocketbot@outlook.com|
 |Variable donde guardar el resultado|Guardar el resultado de la conexión.|result|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
 ### Crear carpeta
   
@@ -35,6 +41,14 @@ Crea una carpeta en Outlook
 |Carpeta destino|Carpeta donde se quiere crear la nueva (opcional).|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEE4E12200|
 |Asignar a variable|Guardar el resultado de la creación de la carpeta.|Variable|
 
+### Listar Carpetas
+  
+Devuelve todas las carpetas
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
+|Asignar resultado a variable||Variable|
+
 ### Buscar por filtro
   
 Buscar correos por filtros
@@ -43,6 +57,8 @@ Buscar correos por filtros
 |Filtro|Filtro que se desea utilizar.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Aviso de compra'|
 |Buscar en|Filtro para emails leidos y no leidos.|Todos|
 |Carpeta|Carpeta en la que se desea buscar.|Inbox|
+|Subcarpeta|Ruta a la subcarpeta en la que desea buscar. Para obtener la ruta a la subcarpeta, debe utilizar el módulo 'Listar carpetas'.|rocketbot@outlook.com/RocketFolder|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 |Asignar a variable|Guardar el resultado de la búsqueda.|Variable|
 
 ### Leer email por EntryID
@@ -52,6 +68,8 @@ Lea la información del correo electrónico por EntryID
 | --- | --- | --- |
 |EntryID|ID del email que se desea obtener.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Asignar a variable|Guardar la lectura del email.|Variable|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
+|Incluir HTML|Incluye al resultado el HTML del correo|True|
 |Descargar adjuntos|Carpeta donde guardar los documentos adjuntos.|C:\User\|
 
 ### Mover email a una carpeta
@@ -85,7 +103,7 @@ Envia un email, previamente debe configurar el servidor
 |Para|Email de los destinatarios.|to@mail.com, to2@mail.com|
 |Copia|Email de los destinatarios.|cc@mail.com, cc2@mail.com|
 |Asunto|Asunto que se desea dar.|Nuevo mail|
-|Mensaje|Mesaje del mail.|Esto es un mensaje de prueba|
+|Mensaje|Puedes usar html para dar estilos a tu correo. Ejemplo <b>Texto en negrita</b>. Para imagenes locales, usar <img src='ruta imagen en png'>|Esto es un mensaje de prueba|
 |Archivo Adjunto|Archivo adjunto que se desea enviar.|C:\User\Desktop\test.txt|
 |Carpeta (Varios archivos)|Carpeta que contiene archivos adjuntos que se desea enviar.|C:\User\Desktop\Files|
 |Confirmación de lectura||True|

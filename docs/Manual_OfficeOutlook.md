@@ -1,3 +1,7 @@
+
+
+
+
 # OfficeOutlook
   
 Module to connect to Outlook Desktop application.  
@@ -22,7 +26,9 @@ In order to use this module, you have to add an account to Outlook and then you 
 Connect to an Outlook application instance
 |Parameters|Description|example|
 | --- | --- | --- |
+|Email|Optional. Email of the Outlook account. Must be an email that is linked in the Outlook Application.|rocketbot@outlook.com|
 |Variable to save connection's result|Save the result of conection.|result|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 
 ### Create folder
   
@@ -33,6 +39,14 @@ Create a folder on Outlook
 |Destination dir|Folder where you want to create the new folder inside (optional).|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEE4E12200|
 |Set to variable|Save the result of the creation of the folder.|Variable|
 
+### List Folders
+  
+List all Folders
+|Parameters|Description|example|
+| --- | --- | --- |
+|Outlook Session|Assign a session to the Outlook connection.|session|
+|Asign result to var||Variable|
+
 ### Search Email by Filter
   
 Search by filter provided
@@ -41,6 +55,8 @@ Search by filter provided
 |Filter|Filter you want to use.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Notification'|
 |Search in|Filter for emails read and unread.|All|
 |Folder|Folder you want to search in.|Inbox|
+|Subfolder|Path to the subfolder you want to search in. To get the path to the subfolder, you must use the 'List folders' module.|rocketbot@outlook.com/RocketFolder|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 |Set to variable|Save the result of search.|Variable|
 
 ### Read email by EntryID
@@ -50,6 +66,8 @@ Read email data by EntryID provided
 | --- | --- | --- |
 |EntryID|ID of the email that you want to obtain.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Set to variable|Save the read email.|Variable|
+|Outlook Session|Assign a session to the Outlook connection.|session|
+|Include HTML|Include the email HTML in the result.|True|
 |Download attachments|Path to folder where to save attachments.|C:\User\|
 
 ### Move email to folder
@@ -83,7 +101,7 @@ Send email, before you must configurate the server
 |To|Emails of recipients.|to@mail.com, to2@mail.com|
 |Cc|Emails of recipients.|cc@mail.com, cc2@mail.com|
 |Subject|Subject to send it with.|New mail|
-|Body|Body of the email.|This is a test message|
+|Body|You can use html to style your email. Example <b>Bold text</b>. For local images, use <img src='png image path'>|This is a test message|
 |Attached File|Attached file that you want to send.|C:\User\Desktop\test.txt|
 |Folder (Multiple files)|Folder that contains attached files which you want to send.|C:\User\Desktop\Files|
 |Read Receipt||True|
@@ -137,4 +155,3 @@ Read .msg file and store the information in a variable
 | --- | --- | --- |
 |Path to .msg file|Path of the .msg file that you want to read.|C:/Users/User/Desktop/file.msg|
 |Asignar resultado a variable|Name of the variable where the information of the .msg file will be stored.|Variable|
-

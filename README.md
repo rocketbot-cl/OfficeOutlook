@@ -1,3 +1,7 @@
+
+
+
+
 # OfficeOutlook
   
 Module to connect to Outlook Desktop application.  
@@ -20,40 +24,43 @@ Connect to an Outlook application instance
 2. Create folder  
 Create a folder on Outlook
 
-3. Search Email by Filter  
+3. List Folders  
+List all Folders
+
+4. Search Email by Filter  
 Search by filter provided
 
-4. Read email by EntryID  
+5. Read email by EntryID  
 Read email data by EntryID provided
 
-5. Move email to folder  
+6. Move email to folder  
 Move email data by EntryID provided
 
-6. Move email to folder by Name  
+7. Move email to folder by Name  
 Move email data by Name provided. (Only folder into Inbox)
 
-7. Mark email as unread  
+8. Mark email as unread  
 Mark email as unread by EntryID provided
 
-8. Send Email  
+9. Send Email  
 Send email, before you must configurate the server
 
-9. Reply Email  
+10. Reply Email  
 Reply mail from Entry ID
 
-10. Forward Email  
+11. Forward Email  
 Forward mail from Entry ID
 
-11. Save Email  
+12. Save Email  
 Saves a mail from Entry ID
 
-12. Extract table from email by EntryID  
+13. Extract table from email by EntryID  
 Extract the content of a table by email EntryID provided
 
-13. Download attachments by EntryID  
+14. Download attachments by EntryID  
 Download attachments by EntryID in a folder
 
-14. Read .msg file  
+15. Read .msg file  
 Read .msg file and store the information in a variable  
 
 

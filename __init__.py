@@ -26,17 +26,34 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
 import os
 import sys
 import math
+import re
 import numpy as np
-import time
 
 base_path = tmp_global_obj["basepath"]
-cur_path = base_path + os.sep + 'OfficeOutlook' + os.sep
-sys.path.append(cur_path + 'libs')
+cur_path = base_path + os.sep + "OfficeOutlook" + os.sep
+sys.path.append(cur_path + "libs")
 
 from win32com import client
 import pandas as pd
 
-global instance
+global mod_office_outlook_sessions
+SESSION_DEFAULT = "default"
+# Initialize settings for the module here
+try:
+    if not mod_office_outlook_sessions:
+        mod_office_outlook_sessions = {SESSION_DEFAULT: {}}
+except NameError:
+    mod_office_outlook_sessions = {SESSION_DEFAULT: {}}
+
+session = GetParams("session")
+
+if not session:
+    session = SESSION_DEFAULT
+
+instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+if mod_office_outlook_sessions.get(session, {}).get("instance"):
+    instance = mod_office_outlook_sessions[session]["instance"]
+
 """
     Obtengo el modulo que fueron invocados
 """
@@ -45,20 +62,36 @@ module = GetParams("module")
 if module == "connect":
 
     whereToSave = GetParams("whereToSave")
+    email = GetParams("account")
+    # show_app = GetParams("showApp")
+
+    # show_app = str(show_app) == "true" or str(show_app) == "True"
+
     connected = False
 
     try:
         instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+        # if show_app:
+        #     pass
+
+        if email and email not in [x.DisplayName for x in instance.Accounts]:
+            raise Exception("Account not found")
+
+        for account in instance.Accounts:
+            if account.DisplayName == email:
+                instance = account.DeliveryStore
+
         # print(instance)
         if instance:
+            mod_office_outlook_sessions[session] = {"instance": instance}
             connected = True
 
     except Exception as e:
         PrintException()
         raise e
 
-
     SetVar(whereToSave, connected)
+
 
 if module == "makeDir":
     folder_name = GetParams("folder_name")
@@ -76,7 +109,7 @@ if module == "makeDir":
         if folder_destination:
             dest = instance.GetFolderFromID(folder_destination)
 
-        print('name', dest.Name)
+        print("name", dest.Name)
         try:
             res = dest.Folders.add(folder_name)
         except:
@@ -87,15 +120,74 @@ if module == "makeDir":
         PrintException()
         raise identifier
 
+
+def getCurrentFolders(instance):
+    try:
+        return instance.Parent.Folders
+    except:
+        return instance.Folders
+
+
+if module == "list_folders":
+    result = GetParams("var")
+
+    if not instance:
+        raise Exception("No Outlook connection")
+
+    try:
+        try:
+            AccountId = instance.StoreID
+        except:
+            AccountId = None
+
+        folders = getCurrentFolders(instance)
+        # root_folder = instance.Folders.Item(1)
+        # stack = [root_folder]
+
+        def getFolders(folders, AccountId, prefix_name="", prefix_id=""):
+            global getFolders
+            folders_list = []
+            for folder in folders:
+
+                if AccountId is not None and folder.Store.StoreID != AccountId:
+                    continue
+
+                folder_info = {
+                    "Name": prefix_name + folder.Name,
+                    "EntryID": prefix_id + folder.EntryID,
+                }
+                folders_list.append(folder_info)
+                subfolders = getFolders(
+                    folder.Folders,
+                    AccountId,
+                    prefix_name + folder.Name + "/",
+                    prefix_id + folder.EntryID + "/",
+                )
+
+                folders_list += subfolders
+
+            return folders_list
+
+        folders_list = getFolders(folders, AccountId)
+
+        SetVar(result, folders_list)
+    except Exception as identifier:
+        PrintException()
+        raise identifier
+
+
 if module == "search":
     filter_ = GetParams("filter")
     type_ = GetParams("filter_type")
     result_ = GetParams("result")
     folderToSearchIn = GetParams("folderToSearchIn")
+    subfolder = GetParams("subfolder")
+    print(instance, mod_office_outlook_sessions)
     try:
         folderToSearchIn = int(folderToSearchIn)
     except:
         pass
+
     if not folderToSearchIn:
         folderToSearchIn = 6
 
@@ -115,23 +207,26 @@ if module == "search":
 
         if not filter_:
             filter_ = ""
-            inbox = instance.GetDefaultFolder('6')
+            inbox = instance.GetDefaultFolder("6")
 
         filter_ = filter_.lower()
-        
+
         # if "domain" in filter_:
         #     domain = filter_
         #     filter_ = ""
-        
-        
+
         filter_2 = "@SQL="
 
-        filter_ = filter_.replace("""subject """, """"urn:schemas:httpmail:subject" like """)
+        filter_ = filter_.replace(
+            """subject """, """"urn:schemas:httpmail:subject" like """
+        )
         filter_ = filter_.replace("*", "%")
         filter_ = filter_.replace("from", """"urn:schemas:httpmail:fromemail" like""")
         filter_ = filter_.replace(" and ", " AND ").replace(" or ", " OR ")
-        filter_ = filter_.replace("""domain '""", """"urn:schemas:httpmail:fromemail" like '%@""")
-        
+        filter_ = filter_.replace(
+            """domain '""", """"urn:schemas:httpmail:fromemail" like '%@"""
+        )
+
         filter_ = filter_2 + filter_
 
         if type_ == "unread":
@@ -139,8 +234,27 @@ if module == "search":
                 filter_ += """ AND "urn:schemas:httpmail:read"=0"""
             else:
                 filter_ += """"urn:schemas:httpmail:read"=0"""
-        inbox = instance.GetDefaultFolder(folderToSearchIn)
-        print('filter', filter_)
+        if type_ == "all":
+            if len(filter_) > 5:
+                filter_ += """ AND "urn:schemas:httpmail:read"=1"""
+            else:
+                filter_ += """"urn:schemas:httpmail:read"=1"""
+
+        if subfolder:
+            folders = getCurrentFolders(instance)
+
+            for folder in subfolder.split("/"):
+                mod_office_outlook_sessions["__private_folder"] = folder
+                inbox = [
+                    x
+                    for x in folders
+                    if x.Name == mod_office_outlook_sessions["__private_folder"]
+                ][0]
+                folders = inbox.Folders
+            # inbox = [x for x in instance.GetDefaultFolder(folderToSearchIn).Parent.Folders if x.EntryId == subfolder][0]
+        else:
+            inbox = instance.GetDefaultFolder(folderToSearchIn)
+        print("filter", filter_)
         table_ = inbox.GetTable(filter_)
         while not table_.EndOfTable:
             r = table_.GetNextRow()
@@ -157,7 +271,7 @@ if module == "search":
             #             tmp.append(r("EntryID"))
             #     except:
             #         continue
-            # else:
+            # else:Le da 
             #     tmp.append(r("EntryID"))
             tmp.append(r("EntryID"))
         if result_:
@@ -171,9 +285,13 @@ if module == "readEmail":
     entry_id = GetParams("entry_id")
     result_ = GetParams("result")
     download_ = GetParams("download")
+    subfolder = GetParams("subfolder")
+    includeHTML = GetParams("includeHTML")
 
     if not instance:
         raise Exception("No Outlook connection")
+
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
 
     try:
         mail_ = instance.GetItemFromID(entry_id)
@@ -184,27 +302,29 @@ if module == "readEmail":
             files.append(att.FileName)
         if result_:
             to_ = [
-                rec.PropertyAccessor.GetProperty('http://schemas.microsoft.com/mapi/proptag/0x39FE001E') or rec.Address
-                for rec in mail_.Recipients]
+                rec.PropertyAccessor.GetProperty(
+                    "http://schemas.microsoft.com/mapi/proptag/0x39FE001E"
+                )
+                or rec.Address
+                for rec in mail_.Recipients
+            ]
             from_ = mail_.SenderEmailAddress
             try:
                 print(mail_.senton)
                 print("Was SentOn")
             except:
                 pass
-            print("received")
-            print(mail_.ReceivedTime)
-            print(mail_.ReceivedTime.__str__())
-            print(mail_.ReceivedTime.__str__().replace("+00:00", ""))
-            print("b")
             data = {
                 "from": from_,
                 "subject": mail_.Subject,
                 "body": mail_.body,
                 "date": mail_.ReceivedTime.__str__().replace("+00:00", ""),
                 "files": files,
-                "to": ",".join(to_)
+                "to": ",".join(to_),
             }
+            if includeHTML == "true" or includeHTML == "True":
+                data["html"] = mail_.HTMLBody
+
             SetVar(result_, data)
         mail_.UnRead = False
         mail_.Save()
@@ -272,6 +392,22 @@ if module == "sendEmail":
         mail = instance.Application.CreateItem(0)
         mail.To = to_
         mail.BodyFormat = 2
+
+        # get image path in body
+        regex = "<\s?img\s.*src\s?=\s?['\"](.*)['\"]"
+        img_path = re.findall(regex, body)
+        if img_path:
+            for img in img_path:
+                if img.startswith(("cid:", "http")):
+                    continue
+                filename = img.replace(os.sep, "/").split("/")[-1]
+                mail.Attachments.Add(img, 1, 0)
+                att = mail.Attachments[mail.Attachments.Count - 1]
+                att.PropertyAccessor.SetProperty(
+                    "http://schemas.microsoft.com/mapi/proptag/0x3712001F", filename
+                )
+                body = body.replace(img, "cid:{}".format(filename))
+
         mail.HTMLBody = body
         if cc:
             mail.CC = cc
@@ -303,6 +439,21 @@ if module == "replyEmail":
     try:
         mail_ = instance.GetItemFromID(entry_id)
         mail = mail_.ReplyAll()
+
+        # get image path in body
+        regex = "<\s?img\s.*src\s?=\s?['\"](.*)['\"]"
+        img_path = re.findall(regex, body)
+        if img_path:
+            for img in img_path:
+                if img.startswith(("cid:", "http")):
+                    continue
+                filename = img.replace(os.sep, "/").split("/")[-1]
+                mail.Attachments.Add(img, 1, 0)
+                att = mail.Attachments[mail.Attachments.Count - 1]
+                att.PropertyAccessor.SetProperty(
+                    "http://schemas.microsoft.com/mapi/proptag/0x3712001F", filename
+                )
+                body = body.replace(img, "cid:{}".format(filename))
 
         mail.HTMLBody = body
         mail.Subject = mail_.Subject
@@ -357,8 +508,12 @@ if module == "extractTable":
         mail_ = instance.GetItemFromID(entry_id)
         if result_:
             to_ = [
-                rec.PropertyAccessor.GetProperty('http://schemas.microsoft.com/mapi/proptag/0x39FE001E') or rec.Address
-                for rec in mail_.Recipients]
+                rec.PropertyAccessor.GetProperty(
+                    "http://schemas.microsoft.com/mapi/proptag/0x39FE001E"
+                )
+                or rec.Address
+                for rec in mail_.Recipients
+            ]
             from_ = mail_.SenderEmailAddress
             # data = pd.read_html(mail_.HTMLBody)[0].values.tolist()
             data = pd.read_html(mail_.HTMLBody)
@@ -372,7 +527,7 @@ if module == "extractTable":
                     for indexu, uno in enumerate(cada):
                         if uno.__str__() == "nan":
                             realData[indxi][indxc][indexu] = ""
-            
+
             SetVar(result_, realData)
     except Exception as e:
         PrintException()
@@ -393,38 +548,6 @@ if module == "get_attachments":
             files.append(att.FileName)
         mail_.UnRead = False
         mail_.Save()
-    except Exception as e:
-        PrintException()
-        raise e
-
-if module == "read_msg":
-    msg_file = GetParams("msg_file")
-    result_ = GetParams("result")
-
-    try:
-        try:
-            if not instance:
-                instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-        except:
-            print("Outlook is not running")
-            time.sleep(0.5)
-            instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-
-        msg_file = os.path.abspath(msg_file)
-        msg = instance.OpenSharedItem(msg_file)
-        result_dict = {
-            "subject": msg.Subject,
-            "body": msg.Body,
-            "sender": msg.SenderEmailAddress,
-            "date": msg.SentOn.strftime("%Y-%m-%d %H:%M:%S"),
-            "to": msg.To,
-            "cc": msg.CC,
-            "bcc": msg.BCC,
-            "attachments": [att.FileName for att in msg.Attachments]
-        }
-        
-        SetVar(result_, result_dict)
-
     except Exception as e:
         PrintException()
         raise e

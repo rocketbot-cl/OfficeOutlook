@@ -1,3 +1,7 @@
+
+
+
+
 # OfficeOutlook
   
 Módulo para conectar-se ao aplicativo de desktop do Outlook.  
@@ -20,40 +24,43 @@ Conectar-se a uma instância do aplicativo Outlook
 2. Criar pasta  
 Criar uma pasta no Outlook
 
-3. Pesquisar e-mail por filtro  
+3. Listar Pastas  
+Devolve todas as pastas
+
+4. Pesquisar e-mail por filtro  
 Pesquisar por filtro fornecido
 
-4. Ler e-mail por EntryID  
+5. Ler e-mail por EntryID  
 Ler dados de e-mail por EntryID fornecido
 
-5. Mover e-mail para pasta  
+6. Mover e-mail para pasta  
 Mover dados de e-mail por EntryID fornecido
 
-6. Mover e-mail para pasta por nome  
+7. Mover e-mail para pasta por nome  
 Mova os dados de e-mail pelo nome fornecido. (Somente pasta na caixa de entrada)
 
-7. Marcar e-mail como não lido  
+8. Marcar e-mail como não lido  
 Marcar e-mail como não lido pelo EntryID fornecido
 
-8. Enviar email  
+9. Enviar email  
 Envie e-mail, antes de configurar o servidor
 
-9. Responder email  
+10. Responder email  
 Responder e-mail do Entry ID
 
-10. Reenviar email  
+11. Reenviar email  
 Reenviar e-mail usando o  Entry ID
 
-11. Salvar email  
+12. Salvar email  
 Salva um e-mail usando o Entry ID
 
-12. Extrair tabela do email por EntryID  
+13. Extrair tabela do email por EntryID  
 Extraia o conteúdo de uma tabela por e-mail EntryID fornecido
 
-13. Baixar anexos por EntryID  
+14. Baixar anexos por EntryID  
 Baixar anexos por EntryID em uma pasta
 
-14. Leia o arquivo .msg  
+15. Leia o arquivo .msg  
 Leia o arquivo .msg e armazene as informações em uma variável  
 
 

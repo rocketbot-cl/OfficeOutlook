@@ -1,3 +1,7 @@
+
+
+
+
 # OfficeOutlook
   
 Módulo para conectarse a la aplicación de escritorio de Outlook.  
@@ -20,40 +24,43 @@ Conectar a una instancia de la aplicación de Outlook
 2. Crear carpeta  
 Crea una carpeta en Outlook
 
-3. Buscar por filtro  
+3. Listar Carpetas  
+Devuelve todas las carpetas
+
+4. Buscar por filtro  
 Buscar correos por filtros
 
-4. Leer email por EntryID  
+5. Leer email por EntryID  
 Lea la información del correo electrónico por EntryID
 
-5. Mover email a una carpeta  
+6. Mover email a una carpeta  
 Mueve un email hacia una carpeta por EntryID
 
-6. Mover email a una carpeta por nombre  
+7. Mover email a una carpeta por nombre  
 Mueve un email hacia una carpeta por Nombre (Solo carpetas dentro de la bandeja de entrada)
 
-7. Marcar email como no leído  
+8. Marcar email como no leído  
 Marca un email como no leído por EntryID
 
-8. Enviar Email  
+9. Enviar Email  
 Envia un email, previamente debe configurar el servidor
 
-9. Responder Email  
+10. Responder Email  
 Responde un email usando el Entry ID
 
-10. Reenviar Email  
+11. Reenviar Email  
 Reenvia un email usando el Entry ID
 
-11. Guardar Email  
+12. Guardar Email  
 Guarda un email usando el Entry ID
 
-12. Extraer tabla por EntryID  
+13. Extraer tabla por EntryID  
 Extrae una table del correo electrónico por EntryID
 
-13. Descargar adjuntos por EntryID  
+14. Descargar adjuntos por EntryID  
 Descargar adjuntos por EntryID en una carpeta
 
-14. Leer archivo .msg  
+15. Leer archivo .msg  
 Leer archivo .msg y almacenar la información en una variable  
 
 

@@ -1,3 +1,7 @@
+
+
+
+
 # OfficeOutlook
   
 Módulo para conectar-se ao aplicativo de desktop do Outlook.  
@@ -24,7 +28,9 @@ Para usar este módulo, você deve adicionar uma conta ao Outlook e, em seguida,
 Conectar-se a uma instância do aplicativo Outlook
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
+|Email|Opcional. Email da conta do Outlook. Deve ser um e-mail que esteja vinculado no aplicativo Outlook.|rocketbot@outlook.com|
 |Variável para salvar o resultado da conexão|Salve o resultado da conexão|result|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Criar pasta
   
@@ -35,6 +41,14 @@ Criar uma pasta no Outlook
 |Pasta de destino|Pasta onde você deseja criar a nova pasta (opcional).|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEE4E12200|
 |Atribuir à variável|Salve o resultado da criação da pasta.|Variável|
 
+### Listar Pastas
+  
+Devolve todas as pastas
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
+|Salve o resultado da pesquisa||Variable|
+
 ### Pesquisar e-mail por filtro
   
 Pesquisar por filtro fornecido
@@ -43,6 +57,8 @@ Pesquisar por filtro fornecido
 |Filtro|Filtro que deseja usar.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Aviso de compra'|
 |Procure em|Filtre por e-mails lidos e não lidos|Todos|
 |Pasta|Pasta na qual deseja pesquisar.|Inbox|
+|Subpasta|Caminho para a subpasta que deseja pesquisar. Para obter o caminho para a subpasta, você deve usar o módulo 'Listar pastas'.|rocketbot@outlook.com/RocketFolder|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 |Atribuir a variável|Salve o resultado da pesquisa.|Variável|
 
 ### Ler e-mail por EntryID
@@ -52,6 +68,8 @@ Ler dados de e-mail por EntryID fornecido
 | --- | --- | --- |
 |EntryID|ID do e-mail que você deseja obter|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Atribuir a variável|Salve o e-mail lido.|Variável|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
+|Incluir HTML|Inclua o HTML do e-mail no resultado.|True|
 |Baixar anexos|Caminho para a pasta onde salvar os anexos.|C:\User\|
 
 ### Mover e-mail para pasta
@@ -85,7 +103,7 @@ Envie e-mail, antes de configurar o servidor
 |To|Emails dos destinatários.|to@mail.com, to2@mail.com|
 |Cc|Emails dos destinatários.|cc@mail.com, cc2@mail.com|
 |Assunto|Assunto do email|Novo mail|
-|Body|Mensagem do e-mail|Esta é uma mensagem de teste|
+|Body|Você pode usar html para estilizar seu e-mail. Exemplo <b>Texto em negrito</b>. Para imagens locais, use <img src='caminho da imagem png'>|Esta é uma mensagem de teste|
 |Arquivo anexo|Arquivo anexado que você deseja enviar.|C:\User\Desktop\test.txt|
 |Pasta (vários arquivos)|Pasta que contém arquivos anexados que você deseja enviar.|C:\User\Desktop\Files|
 |Confirmação de leitura||True|
