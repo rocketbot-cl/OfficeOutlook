@@ -88,6 +88,26 @@
             "css": "col-md-6"
           },
           {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "True",
+              "en": "True",
+              "pr": "True"
+            },
+            "title": {
+              "en": "Show Application",
+              "es": "Mostrar aplicación",
+              "pr": "Mostrar aplicativo"
+            },
+            "description": {
+              "es": "Este casilla permite mostrar la aplicación de Outlook. Si no está marcado, la aplicación se ejecutará en segundo plano.",
+              "en": "This checkbox allows you to show the Outlook application. If it is not checked, the application will run in the background.",
+              "pr": "Esta caixa de seleção permite que você mostre o aplicativo Outlook. Se não estiver marcado, o aplicativo será executado em segundo plano."
+            },
+            "id": "showApp",
+            "css": "col-md-6"
+          },
+          {
             "type": "input",
             "placeholder": {
               "es": "session",

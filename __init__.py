@@ -28,6 +28,7 @@ import sys
 import math
 import re
 import numpy as np
+from time import sleep
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + os.sep + "OfficeOutlook" + os.sep
@@ -51,8 +52,10 @@ if not session:
     session = SESSION_DEFAULT
 
 instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+isOpened = False
 if mod_office_outlook_sessions.get(session, {}).get("instance"):
     instance = mod_office_outlook_sessions[session]["instance"]
+    isOpened = mod_office_outlook_sessions[session].get("isOpened", False)
 
 """
     Obtengo el modulo que fueron invocados
@@ -63,16 +66,21 @@ if module == "connect":
 
     whereToSave = GetParams("whereToSave")
     email = GetParams("account")
-    # show_app = GetParams("showApp")
+    show_app = GetParams("showApp")
 
-    # show_app = str(show_app) == "true" or str(show_app) == "True"
+    show_app = str(show_app) == "true" or str(show_app) == "True"
 
     connected = False
 
     try:
+        
         instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-        # if show_app:
-        #     pass
+        
+        if show_app and not isOpened:
+            instance.GetDefaultFolder(6).Display()
+            mod_office_outlook_sessions[session]["isOpened"] = True
+        
+        # close app
 
         if email and email not in [x.DisplayName for x in instance.Accounts]:
             raise Exception("Account not found")
@@ -83,7 +91,7 @@ if module == "connect":
 
         # print(instance)
         if instance:
-            mod_office_outlook_sessions[session] = {"instance": instance}
+            mod_office_outlook_sessions[session]["instance"] = instance
             connected = True
 
     except Exception as e:
@@ -240,6 +248,7 @@ if module == "search":
             else:
                 filter_ += """"urn:schemas:httpmail:read"=1"""
 
+        print("filter", filter_)
         if subfolder:
             folders = getCurrentFolders(instance)
             for folder in subfolder.split("/"):
@@ -253,7 +262,6 @@ if module == "search":
             # inbox = [x for x in instance.GetDefaultFolder(folderToSearchIn).Parent.Folders if x.EntryId == subfolder][0]
         else:
             inbox = instance.GetDefaultFolder(folderToSearchIn)
-        print("filter", filter_)
         table_ = inbox.GetTable(filter_)
         while not table_.EndOfTable:
             r = table_.GetNextRow()
@@ -432,6 +440,7 @@ if module == "replyEmail":
     att_files = GetParams("attached_file")
     att_folder = GetParams("attached_folder")
 
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     if not instance:
         raise Exception("No Outlook connection")
 
@@ -444,17 +453,18 @@ if module == "replyEmail":
         img_path = re.findall(regex, body)
         if img_path:
             for img in img_path:
+                print(img)
                 if img.startswith(("cid:", "http")):
                     continue
-                filename = img.replace(os.sep, "/").split("/")[-1]
+                filename = img.replace(os.sep, "/").split("/")[-1].replace(" ", "_").replace("(", "").replace(")", "")
                 mail.Attachments.Add(img, 1, 0)
                 att = mail.Attachments[mail.Attachments.Count - 1]
                 att.PropertyAccessor.SetProperty(
                     "http://schemas.microsoft.com/mapi/proptag/0x3712001F", filename
                 )
                 body = body.replace(img, "cid:{}".format(filename))
-
-        mail.HTMLBody = body
+        # print(body)
+        mail.HTMLBody = body + mail_.HTMLBody
         mail.Subject = mail_.Subject
         if att_files:
             mail.Attachments.Add(att_files)
