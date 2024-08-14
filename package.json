@@ -7,7 +7,7 @@
     "pr": "Módulo para conectar-se ao aplicativo de desktop do Outlook."
   },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "license": "MIT",
   "homepage": "http://rocketbot.com",
   "linux": true,
@@ -432,16 +432,16 @@
           },
           {
             "type": "input",
-            "placeholder": "000000005B1FF6D8E324B041ABBA2628E77D1D520100C3B68E10F775",
+            "placeholder": "rocketbot@outlook.com/RocketFolder",
             "title": {
-              "en": "Subfolder ID",
-              "es": "ID de subcarpeta",
-              "pr": "ID da subpasta"
+              "en": "Subfolder",
+              "es": "Subcarpeta",
+              "pr": "Subpasta"
             },
             "description": {
-              "es": "ID de la subcarpeta en la que se desea buscar. Para obtener el ID de la subcarpeta, se debe usar el módulo 'Listar carpetas'.",
-              "en": "ID of the subfolder you want to search in. To get the ID of the subfolder, you must use the 'List folders' module.",
-              "pr": "ID da subpasta na qual deseja pesquisar. Para obter o ID da subpasta, você deve usar o módulo 'Listar pastas'."
+              "es": "Ruta a la subcarpeta en la que desea buscar. Para obtener la ruta a la subcarpeta, debe utilizar el módulo 'Listar carpetas'.",
+              "en": "Path to the subfolder you want to search in. To get the path to the subfolder, you must use the 'List folders' module.",
+              "pr": "Caminho para a subpasta que deseja pesquisar. Para obter o caminho para a subpasta, você deve usar o módulo 'Listar pastas'."
             },
             "id": "subfolder",
             "css": "col-md-12"

@@ -251,6 +251,7 @@ if module == "search":
         print("filter", filter_)
         if subfolder:
             folders = getCurrentFolders(instance)
+
             for folder in subfolder.split("/"):
                 mod_office_outlook_sessions["__private_folder"] = folder
                 inbox = [
@@ -278,7 +279,7 @@ if module == "search":
             #             tmp.append(r("EntryID"))
             #     except:
             #         continue
-            # else:
+            # else:Le da 
             #     tmp.append(r("EntryID"))
             tmp.append(r("EntryID"))
         if result_:
