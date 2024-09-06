@@ -36,6 +36,7 @@ sys.path.append(cur_path + "libs")
 
 from win32com import client
 import pandas as pd
+import tempfile
 
 global mod_office_outlook_sessions
 SESSION_DEFAULT = "default"
@@ -440,6 +441,7 @@ if module == "replyEmail":
     body = GetParams("body")
     att_files = GetParams("attached_file")
     att_folder = GetParams("attached_folder")
+    includeatt = eval(GetParams("includeatt")) if GetParams("includeatt") else False
 
     instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     if not instance:
@@ -464,9 +466,16 @@ if module == "replyEmail":
                     "http://schemas.microsoft.com/mapi/proptag/0x3712001F", filename
                 )
                 body = body.replace(img, "cid:{}".format(filename))
-        # print(body)
-        mail.HTMLBody = body + mail_.HTMLBody
-        mail.Subject = mail_.Subject
+
+        mail.HTMLBody = body + mail.HTMLBody
+
+        mail.Subject = mail.Subject
+
+        if includeatt is True:
+            for attachment in mail_.Attachments:
+                attachment.SaveAsFile(os.path.join(tempfile.gettempdir(), attachment.FileName))
+                mail.Attachments.Add(os.path.join(tempfile.gettempdir(), attachment.FileName))
+
         if att_files:
             mail.Attachments.Add(att_files)
         if att_folder:
