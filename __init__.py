@@ -456,7 +456,6 @@ if module == "replyEmail":
         img_path = re.findall(regex, body)
         if img_path:
             for img in img_path:
-                print(img)
                 if img.startswith(("cid:", "http")):
                     continue
                 filename = img.replace(os.sep, "/").split("/")[-1].replace(" ", "_").replace("(", "").replace(")", "")
