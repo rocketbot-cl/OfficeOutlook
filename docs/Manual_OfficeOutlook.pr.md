@@ -30,6 +30,7 @@ Conectar-se a uma instância do aplicativo Outlook
 | --- | --- | --- |
 |Email|Opcional. Email da conta do Outlook. Deve ser um e-mail que esteja vinculado no aplicativo Outlook.|rocketbot@outlook.com|
 |Variável para salvar o resultado da conexão|Salve o resultado da conexão|result|
+|Mostrar aplicativo|Esta caixa de seleção permite que você mostre o aplicativo Outlook. Se não estiver marcado, o aplicativo será executado em segundo plano.|True|
 |Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Criar pasta
@@ -117,6 +118,7 @@ Responder e-mail do Entry ID
 |Mensagem|Mensagem do e-mail.|Isto é um teste|
 |Arquivo anexo|Arquivo anexado com o qual você deseja enviar.|C:\User\Desktop\test.txt|
 |Pasta (vários arquivos)|Pasta que contém arquivos anexados com os quais você deseja enviar.|C:\User\Desktop\Files|
+|Incluir arquivos anexados recebidos|Inclua os anexos recebidos no e-mail na resposta.|True|
 
 ### Reenviar email
   

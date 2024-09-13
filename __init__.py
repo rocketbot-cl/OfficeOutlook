@@ -28,6 +28,7 @@ import sys
 import math
 import re
 import numpy as np
+from time import sleep
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + os.sep + "OfficeOutlook" + os.sep
@@ -35,6 +36,7 @@ sys.path.append(cur_path + "libs")
 
 from win32com import client
 import pandas as pd
+import tempfile
 
 global mod_office_outlook_sessions
 SESSION_DEFAULT = "default"
@@ -51,8 +53,10 @@ if not session:
     session = SESSION_DEFAULT
 
 instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+isOpened = False
 if mod_office_outlook_sessions.get(session, {}).get("instance"):
     instance = mod_office_outlook_sessions[session]["instance"]
+    isOpened = mod_office_outlook_sessions[session].get("isOpened", False)
 
 """
     Obtengo el modulo que fueron invocados
@@ -63,16 +67,21 @@ if module == "connect":
 
     whereToSave = GetParams("whereToSave")
     email = GetParams("account")
-    # show_app = GetParams("showApp")
+    show_app = GetParams("showApp")
 
-    # show_app = str(show_app) == "true" or str(show_app) == "True"
+    show_app = str(show_app) == "true" or str(show_app) == "True"
 
     connected = False
 
     try:
+        
         instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-        # if show_app:
-        #     pass
+        
+        if show_app and not isOpened:
+            instance.GetDefaultFolder(6).Display()
+            mod_office_outlook_sessions[session]["isOpened"] = True
+        
+        # close app
 
         if email and email not in [x.DisplayName for x in instance.Accounts]:
             raise Exception("Account not found")
@@ -83,7 +92,7 @@ if module == "connect":
 
         # print(instance)
         if instance:
-            mod_office_outlook_sessions[session] = {"instance": instance}
+            mod_office_outlook_sessions[session]["instance"] = instance
             connected = True
 
     except Exception as e:
@@ -240,6 +249,7 @@ if module == "search":
             else:
                 filter_ += """"urn:schemas:httpmail:read"=1"""
 
+        print("filter", filter_)
         if subfolder:
             folders = getCurrentFolders(instance)
 
@@ -254,7 +264,6 @@ if module == "search":
             # inbox = [x for x in instance.GetDefaultFolder(folderToSearchIn).Parent.Folders if x.EntryId == subfolder][0]
         else:
             inbox = instance.GetDefaultFolder(folderToSearchIn)
-        print("filter", filter_)
         table_ = inbox.GetTable(filter_)
         while not table_.EndOfTable:
             r = table_.GetNextRow()
@@ -432,7 +441,9 @@ if module == "replyEmail":
     body = GetParams("body")
     att_files = GetParams("attached_file")
     att_folder = GetParams("attached_folder")
+    includeatt = eval(GetParams("includeatt")) if GetParams("includeatt") else False
 
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     if not instance:
         raise Exception("No Outlook connection")
 
@@ -447,7 +458,7 @@ if module == "replyEmail":
             for img in img_path:
                 if img.startswith(("cid:", "http")):
                     continue
-                filename = img.replace(os.sep, "/").split("/")[-1]
+                filename = img.replace(os.sep, "/").split("/")[-1].replace(" ", "_").replace("(", "").replace(")", "")
                 mail.Attachments.Add(img, 1, 0)
                 att = mail.Attachments[mail.Attachments.Count - 1]
                 att.PropertyAccessor.SetProperty(
@@ -455,8 +466,15 @@ if module == "replyEmail":
                 )
                 body = body.replace(img, "cid:{}".format(filename))
 
-        mail.HTMLBody = body
-        mail.Subject = mail_.Subject
+        mail.HTMLBody = body + mail.HTMLBody
+
+        mail.Subject = mail.Subject
+
+        if includeatt is True:
+            for attachment in mail_.Attachments:
+                attachment.SaveAsFile(os.path.join(tempfile.gettempdir(), attachment.FileName))
+                mail.Attachments.Add(os.path.join(tempfile.gettempdir(), attachment.FileName))
+
         if att_files:
             mail.Attachments.Add(att_files)
         if att_folder:

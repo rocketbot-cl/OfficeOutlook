@@ -28,6 +28,7 @@ Connect to an Outlook application instance
 | --- | --- | --- |
 |Email|Optional. Email of the Outlook account. Must be an email that is linked in the Outlook Application.|rocketbot@outlook.com|
 |Variable to save connection's result|Save the result of conection.|result|
+|Show Application|This checkbox allows you to show the Outlook application. If it is not checked, the application will run in the background.|True|
 |Outlook Session|Assign a session to the Outlook connection.|session|
 
 ### Create folder
@@ -115,6 +116,7 @@ Reply mail from Entry ID
 |Body|Body of the email.|This is a test|
 |Attached File|Attached file that you want to send with.|C:\User\Desktop\test.txt|
 |Folder (Multiple files)|Folder that contains attached files which you want to send with.|C:\User\Desktop\Files|
+|Include attached files received|Include the email's received attachments in the reply.|True|
 
 ### Forward Email
   
