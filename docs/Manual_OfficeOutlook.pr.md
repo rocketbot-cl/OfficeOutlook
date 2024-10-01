@@ -56,7 +56,7 @@ Pesquisar por filtro fornecido
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Filtro|Filtro que deseja usar.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Aviso de compra'|
-|Procure em|Filtre por e-mails lidos e não lidos|Todos|
+|Procure em|Filtrar por e-mails lidos, não lidos e todos.|Todos|
 |Pasta|Pasta na qual deseja pesquisar.|Inbox|
 |Subpasta|Caminho para a subpasta que deseja pesquisar. Para obter o caminho para a subpasta, você deve usar o módulo 'Listar pastas'.|rocketbot@outlook.com/RocketFolder|
 |Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|

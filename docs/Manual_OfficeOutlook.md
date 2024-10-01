@@ -4,156 +4,158 @@
 
 # OfficeOutlook
   
-Module to connect to Outlook Desktop application.  
+Módulo para conectarse a la aplicación de escritorio de Outlook.  
 
 *Read this in other languages: [English](Manual_OfficeOutlook.md), [Português](Manual_OfficeOutlook.pr.md), [Español](Manual_OfficeOutlook.es.md)*
   
 ![banner](imgs/Banner_OfficeOutlook.png)
-## How to install this module
+## Como instalar este módulo
   
-To install the module in Rocketbot Studio, it can be done in two ways:
-1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
-2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
-
-## How to use this module
-In order to use this module, you have to add an account to Outlook and then you can connect successfully.
+Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
+1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
+2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
 
 
-## Description of the commands
 
-### Connect to Outlook
+## Como usar este módulo
+Para usar este módulo, tienes que agregar una cuenta a Outlook y luego podras conectarte correctamente.
+
+
+## Descripción de los comandos
+
+### Conectar a Outlook
   
-Connect to an Outlook application instance
-|Parameters|Description|example|
+Conectar a una instancia de la aplicación de Outlook
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Email|Optional. Email of the Outlook account. Must be an email that is linked in the Outlook Application.|rocketbot@outlook.com|
-|Variable to save connection's result|Save the result of conection.|result|
-|Show Application|This checkbox allows you to show the Outlook application. If it is not checked, the application will run in the background.|True|
-|Outlook Session|Assign a session to the Outlook connection.|session|
+|Email|Opcional. Email de la cuenta de Outlook. Debe ser un correo que esté enlazado en la Aplicación de Outlook.|rocketbot@outlook.com|
+|Variable donde guardar el resultado|Guardar el resultado de la conexión.|result|
+|Mostrar aplicación|Este casilla permite mostrar la aplicación de Outlook. Si no está marcado, la aplicación se ejecutará en segundo plano.|True|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
-### Create folder
+### Crear carpeta
   
-Create a folder on Outlook
-|Parameters|Description|example|
+Crea una carpeta en Outlook
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Folder name|Name of the folder you want to create.|New folder|
-|Destination dir|Folder where you want to create the new folder inside (optional).|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEE4E12200|
-|Set to variable|Save the result of the creation of the folder.|Variable|
+|Nombre carpeta|Nombre de la carpeta que se desea crear.|Nueva carpeta|
+|Carpeta destino|Carpeta donde se quiere crear la nueva (opcional).|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEE4E12200|
+|Asignar a variable|Guardar el resultado de la creación de la carpeta.|Variable|
 
-### List Folders
+### Listar Carpetas
   
-List all Folders
-|Parameters|Description|example|
+Devuelve todas las carpetas
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Outlook Session|Assign a session to the Outlook connection.|session|
-|Asign result to var||Variable|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
+|Asignar resultado a variable||Variable|
 
-### Search Email by Filter
+### Buscar por filtro
   
-Search by filter provided
-|Parameters|Description|example|
+Buscar correos por filtros
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Filter|Filter you want to use.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Notification'|
-|Search in|Filter for emails read and unread.|All|
-|Folder|Folder you want to search in.|Inbox|
-|Subfolder|Path to the subfolder you want to search in. To get the path to the subfolder, you must use the 'List folders' module.|rocketbot@outlook.com/RocketFolder|
-|Outlook Session|Assign a session to the Outlook connection.|session|
-|Set to variable|Save the result of search.|Variable|
+|Filtro|Filtro que se desea utilizar.|(domain 'rocketbot.com' or domain 'gmail.com') and subject 'Aviso de compra'|
+|Buscar en|Filtro para emails leidos, no leidos y Todos.|Todos|
+|Carpeta|Carpeta en la que se desea buscar.|Inbox|
+|Subcarpeta|Ruta a la subcarpeta en la que desea buscar. Para obtener la ruta a la subcarpeta, debe utilizar el módulo 'Listar carpetas'.|rocketbot@outlook.com/RocketFolder|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
+|Asignar a variable|Guardar el resultado de la búsqueda.|Variable|
 
-### Read email by EntryID
+### Leer email por EntryID
   
-Read email data by EntryID provided
-|Parameters|Description|example|
+Lea la información del correo electrónico por EntryID
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|EntryID|ID of the email that you want to obtain.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
-|Set to variable|Save the read email.|Variable|
-|Outlook Session|Assign a session to the Outlook connection.|session|
-|Include HTML|Include the email HTML in the result.|True|
-|Download attachments|Path to folder where to save attachments.|C:\User\|
+|EntryID|ID del email que se desea obtener.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Asignar a variable|Guardar la lectura del email.|Variable|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
+|Incluir HTML|Incluye al resultado el HTML del correo|True|
+|Descargar adjuntos|Carpeta donde guardar los documentos adjuntos.|C:\User\|
 
-### Move email to folder
+### Mover email a una carpeta
   
-Move email data by EntryID provided
-|Parameters|Description|example|
+Mueve un email hacia una carpeta por EntryID
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|EntryID|ID of the email that you want to move.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
-|Destination folder|Folder where you want to move in.|0014182A9615CE201001B40B98EB45D6B4A70D3F4F050000D5955FDE0000|
+|EntryID|ID del email que se desea mover.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Carpeta de destino|Carpeta donde se desea mover.|0014182A9615CE201001B40B98EB45D6B4A70D3F4F050000D5955FDE0000|
 
-### Move email to folder by Name
+### Mover email a una carpeta por nombre
   
-Move email data by Name provided. (Only folder into Inbox)
-|Parameters|Description|example|
+Mueve un email hacia una carpeta por Nombre (Solo carpetas dentro de la bandeja de entrada)
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|EntryID|ID of the email that you want to move.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
-|Destination folder|Folder where you want to move in.|my_folder|
+|EntryID|ID del email que se desea mover.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Carpeta de destino|Carpeta donde se desea mover.|mi_carpeta|
 
-### Mark email as unread
+### Marcar email como no leído
   
-Mark email as unread by EntryID provided
-|Parameters|Description|example|
+Marca un email como no leído por EntryID
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|EntryID|ID of email that you want to mark as unread.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|EntryID|ID del email que se desea marker como no leído.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 
-### Send Email
+### Enviar Email
   
-Send email, before you must configurate the server
-|Parameters|Description|example|
+Envia un email, previamente debe configurar el servidor
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|To|Emails of recipients.|to@mail.com, to2@mail.com|
-|Cc|Emails of recipients.|cc@mail.com, cc2@mail.com|
-|Subject|Subject to send it with.|New mail|
-|Body|You can use html to style your email. Example <b>Bold text</b>. For local images, use <img src='png image path'>|This is a test message|
-|Attached File|Attached file that you want to send.|C:\User\Desktop\test.txt|
-|Folder (Multiple files)|Folder that contains attached files which you want to send.|C:\User\Desktop\Files|
-|Read Receipt||True|
+|Para|Email de los destinatarios.|to@mail.com, to2@mail.com|
+|Copia|Email de los destinatarios.|cc@mail.com, cc2@mail.com|
+|Asunto|Asunto que se desea dar.|Nuevo mail|
+|Mensaje|Puedes usar html para dar estilos a tu correo. Ejemplo <b>Texto en negrita</b>. Para imagenes locales, usar <img src='ruta imagen en png'>|Esto es un mensaje de prueba|
+|Archivo Adjunto|Archivo adjunto que se desea enviar.|C:\User\Desktop\test.txt|
+|Carpeta (Varios archivos)|Carpeta que contiene archivos adjuntos que se desea enviar.|C:\User\Desktop\Files|
+|Confirmación de lectura||True|
 
-### Reply Email
+### Responder Email
   
-Reply mail from Entry ID
-|Parameters|Description|example|
+Responde un email usando el Entry ID
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|EntryID|ID of the email that you want to reply.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
-|Body|Body of the email.|This is a test|
-|Attached File|Attached file that you want to send with.|C:\User\Desktop\test.txt|
-|Folder (Multiple files)|Folder that contains attached files which you want to send with.|C:\User\Desktop\Files|
-|Include attached files received|Include the email's received attachments in the reply.|True|
+|EntryID|ID del email que se desea responder.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Mensaje|Mesaje del mail.|Esto es una prueba|
+|Archivo Adjunto|Archivo adjunto que se desea enviar.|C:\User\Desktop\test.txt|
+|Carpeta (Varios archivos)|Carpeta que contiene archivos adjuntos que se desea enviar.|C:\User\Desktop\Files|
+|Incluir archivos adjuntos recibidos|Incluye en la respuesta el/los archivos adjuntos recibidos en el mail.|True|
 
-### Forward Email
+### Reenviar Email
   
-Forward mail from Entry ID
-|Parameters|Description|example|
+Reenvia un email usando el Entry ID
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|EntryID|ID of the email that you want to forward.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
-|To|Emails of recipients.|to@mail.com, to2@mail.com|
+|EntryID|ID del email que se desea reenviar.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Para|Email de los destinatarios.|to@mail.com, to2@mail.com|
 
-### Save Email
+### Guardar Email
   
-Saves a mail from Entry ID
-|Parameters|Description|example|
+Guarda un email usando el Entry ID
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|EntryID|ID of email that you want to save.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
-|Path to save file|Path in which to save the file.|C:/Users/Documents/mail.msg|
+|EntryID|ID del email que se desea guardar.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Ruta donde guardar|Ruta en la cual se desea guardar el archivo.|C:/Users/Documents/mail.msg|
 
-### Extract table from email by EntryID
+### Extraer tabla por EntryID
   
-Extract the content of a table by email EntryID provided
-|Parameters|Description|example|
+Extrae una table del correo electrónico por EntryID
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|EntryID|ID of email that you want to extract the table.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
-|Set to variable|Save the result of the read of the table.|Variable|
+|EntryID|ID del email que se desea extraer la tabla.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Asignar a variable|Guardar el resultado de la lectura de la tabla.|Variable|
 
-### Download attachments by EntryID
+### Descargar adjuntos por EntryID
   
-Download attachments by EntryID in a folder
-|Parameters|Description|example|
+Descargar adjuntos por EntryID en una carpeta
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|EntryID|ID of email that you want to obtain.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
-|Download attachments|Path to folder where to save attachments.|C:\User\|
+|EntryID|ID del email que se desea obtener.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Descargar adjuntos|Carpeta donde guardar los documentos adjuntos.|C:\User\|
 
-### Read .msg file
+### Leer archivo .msg
   
-Read .msg file and store the information in a variable
-|Parameters|Description|example|
+Leer archivo .msg y almacenar la información en una variable
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Path to .msg file|Path of the .msg file that you want to read.|C:/Users/User/Desktop/file.msg|
-|Asignar resultado a variable|Name of the variable where the information of the .msg file will be stored.|Variable|
+|Ruta del archivo .msg|Ruta del archivo .msg que se desea leer.|C:/Users/User/Desktop/file.msg|
+|Asignar resultado a variable|Nombre de la variable donde se almacenará la información del archivo .msg.|Variable|

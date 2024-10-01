@@ -243,12 +243,17 @@ if module == "search":
                 filter_ += """ AND "urn:schemas:httpmail:read"=0"""
             else:
                 filter_ += """"urn:schemas:httpmail:read"=0"""
-        if type_ == "all":
+        if type_ == "read":
             if len(filter_) > 5:
                 filter_ += """ AND "urn:schemas:httpmail:read"=1"""
             else:
                 filter_ += """"urn:schemas:httpmail:read"=1"""
-
+        if type_ == "all":
+            if len(filter_) > 5:
+                filter_ += """ AND ("urn:schemas:httpmail:read"=1 OR "urn:schemas:httpmail:read"=0)"""
+            else:
+                filter_ += """("urn:schemas:httpmail:read"=1 OR "urn:schemas:httpmail:read"=0)"""
+   
         print("filter", filter_)
         if subfolder:
             folders = getCurrentFolders(instance)
