@@ -52,6 +52,9 @@ session = GetParams("session")
 if not session:
     session = SESSION_DEFAULT
 
+if session not in mod_office_outlook_sessions:
+    mod_office_outlook_sessions[session] = {}
+
 instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
 isOpened = False
 if mod_office_outlook_sessions.get(session, {}).get("instance"):
