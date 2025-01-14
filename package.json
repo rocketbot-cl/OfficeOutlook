@@ -84,6 +84,7 @@
               "en": "Save the result of conection.",
               "pr": "Salve o resultado da conexão"
             },
+            "remove_vars": true,
             "id": "whereToSave",
             "css": "col-md-6"
           },

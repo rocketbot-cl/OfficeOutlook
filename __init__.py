@@ -72,20 +72,23 @@ if module == "connect":
     email = GetParams("account")
     show_app = GetParams("showApp")
     show_app = str(show_app) == "true" or str(show_app) == "True"
-
     connected = False
+    
 
     try:
         
-        instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+        instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")        
+
+
+        if email and email not in [x.DisplayName for x in instance.Accounts]:
+            SetVar(whereToSave, connected)
+            raise Exception("Account not found")
+            
         
         if show_app and not isOpened:
             instance.GetDefaultFolder(6).Display()
             mod_office_outlook_sessions[session]["isOpened"] = True
 
-        if email and email not in [x.DisplayName for x in instance.Accounts]:
-            raise Exception("Account not found")
-        
         for account in instance.Accounts:
             if account.DisplayName == email:
                 instance = account.DeliveryStore
@@ -99,6 +102,7 @@ if module == "connect":
     except Exception as e:
         PrintException()
         raise e
+        
 
     SetVar(whereToSave, connected)
 
