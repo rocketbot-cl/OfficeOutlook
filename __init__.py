@@ -52,6 +52,9 @@ session = GetParams("session")
 if not session:
     session = SESSION_DEFAULT
 
+if session not in mod_office_outlook_sessions:
+    mod_office_outlook_sessions[session] = {}
+
 instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
 isOpened = False
 if mod_office_outlook_sessions.get(session, {}).get("instance"):
@@ -68,36 +71,38 @@ if module == "connect":
     whereToSave = GetParams("whereToSave")
     email = GetParams("account")
     show_app = GetParams("showApp")
-
     show_app = str(show_app) == "true" or str(show_app) == "True"
-
     connected = False
+    
 
     try:
         
-        instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+        instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")        
+
+
+        if email and email not in [x.DisplayName for x in instance.Accounts]:
+            SetVar(whereToSave, connected)
+            raise Exception("Account not found")
+            
         
         if show_app and not isOpened:
             instance.GetDefaultFolder(6).Display()
             mod_office_outlook_sessions[session]["isOpened"] = True
-        
-        # close app
-
-        if email and email not in [x.DisplayName for x in instance.Accounts]:
-            raise Exception("Account not found")
 
         for account in instance.Accounts:
             if account.DisplayName == email:
                 instance = account.DeliveryStore
-
-        # print(instance)
+                
         if instance:
-            mod_office_outlook_sessions[session]["instance"] = instance
+            # mod_office_outlook_sessions[session]["instance"] = instance
+            mod_office_outlook_sessions[session] = {"instance": instance, "account": email}
+            print(mod_office_outlook_sessions[session])
             connected = True
 
     except Exception as e:
         PrintException()
         raise e
+        
 
     SetVar(whereToSave, connected)
 
@@ -106,7 +111,7 @@ if module == "makeDir":
     folder_name = GetParams("folder_name")
     result = GetParams("result")
     folder_destination = GetParams("folder_destination")
-
+    instance = mod_office_outlook_sessions[session]["instance"]
     if not instance:
         raise Exception("No Outlook connection")
 
@@ -139,7 +144,7 @@ def getCurrentFolders(instance):
 
 if module == "list_folders":
     result = GetParams("var")
-
+    instance = mod_office_outlook_sessions[session]["instance"]
     if not instance:
         raise Exception("No Outlook connection")
 
@@ -191,7 +196,11 @@ if module == "search":
     result_ = GetParams("result")
     folderToSearchIn = GetParams("folderToSearchIn")
     subfolder = GetParams("subfolder")
-    print(instance, mod_office_outlook_sessions)
+    
+    instance = mod_office_outlook_sessions[session]["instance"]
+
+    if not instance:
+        raise Exception("No Outlook connection")
     try:
         folderToSearchIn = int(folderToSearchIn)
     except:
@@ -203,9 +212,7 @@ if module == "search":
     if not type_:
         type_ = "all"
 
-    if not instance:
-        raise Exception("No Outlook connection")
-
+    
     try:
         tmp = []
         domain = None
@@ -302,18 +309,24 @@ if module == "readEmail":
     subfolder = GetParams("subfolder")
     includeHTML = GetParams("includeHTML")
 
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     if not instance:
         raise Exception("No Outlook connection")
-
-    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-
+    
     try:
         mail_ = instance.GetItemFromID(entry_id)
         files = []
         for att in mail_.Attachments:
             if download_:
-                att.SaveASFile(os.path.join(download_, att.FileName))
-            files.append(att.FileName)
+                base_name, ext = os.path.splitext(att.FileName)
+                unique_name = att.FileName
+                counter = 1
+                while os.path.exists(os.path.join(download_, unique_name)):
+                    unique_name = f"{base_name} ({counter}){ext}"
+                    counter += 1
+                att.SaveASFile(os.path.join(download_, unique_name))
+                files.append(unique_name)
+            # files.append(att.FileName)
         if result_:
             to_ = [
                 rec.PropertyAccessor.GetProperty(
@@ -349,7 +362,7 @@ if module == "readEmail":
 if module == "moveEmail":
     to_ = GetParams("to_")
     entry_id = GetParams("entry_id")
-
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     if not to_:
         raise Exception("No destination folder provided")
 
@@ -368,6 +381,7 @@ if module == "moveEmailByName":
     to_ = GetParams("to_")
     entry_id = GetParams("entry_id")
 
+    instance = mod_office_outlook_sessions[session]["instance"]
     if not to_:
         raise Exception("No destination folder provided")
 
@@ -385,7 +399,7 @@ if module == "moveEmailByName":
 
 if module == "markAsUnread":
     entry_id = GetParams("entry_id")
-
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     try:
         mail_ = instance.GetItemFromID(entry_id)
         mail_.unread = True
@@ -402,6 +416,7 @@ if module == "sendEmail":
     att_files = GetParams("attached_file")
     att_folder = GetParams("attached_folder")
     read_receipt = GetParams("read_receipt")
+    instance = mod_office_outlook_sessions[session]["instance"]
     try:
         mail = instance.Application.CreateItem(0)
         mail.To = to_
@@ -497,7 +512,7 @@ if module == "replyEmail":
 if module == "Forward":
     entry_id = GetParams("entry_id")
     to_ = GetParams("to")
-
+    instance = mod_office_outlook_sessions[session]["instance"]
     if not instance:
         raise Exception("No Outlook connection")
     try:
@@ -515,7 +530,9 @@ if module == "Forward":
 if module == "SaveAs":
     entry_id = GetParams("entry_id")
     whereToSave = GetParams("whereToSave")
-
+    instance = mod_office_outlook_sessions[session]["instance"]
+    if not instance:
+        raise Exception("No Outlook connection")
     mail = instance.GetItemFromID(entry_id)
     mail.SaveAs(whereToSave, 3)
 
@@ -523,7 +540,7 @@ if module == "SaveAs":
 if module == "extractTable":
     entry_id = GetParams("entry_id")
     result_ = GetParams("result")
-
+    instance = mod_office_outlook_sessions[session]["instance"]
     if not instance:
         raise Exception("No Outlook connection")
     realData = []
@@ -559,7 +576,7 @@ if module == "extractTable":
 if module == "get_attachments":
     entry_id = GetParams("entry_id")
     download_ = GetParams("download")
-
+    instance = mod_office_outlook_sessions[session]["instance"]
     if not instance:
         raise Exception("No Outlook connection")
     try:
