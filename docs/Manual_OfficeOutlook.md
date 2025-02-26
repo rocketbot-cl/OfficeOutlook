@@ -40,6 +40,7 @@ Crea una carpeta en Outlook
 | --- | --- | --- |
 |Nombre carpeta|Nombre de la carpeta que se desea crear.|Nueva carpeta|
 |Carpeta destino|Carpeta donde se quiere crear la nueva (opcional).|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEE4E12200|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 |Asignar a variable|Guardar el resultado de la creación de la carpeta.|Variable|
 
 ### Listar Carpetas
@@ -80,6 +81,7 @@ Mueve un email hacia una carpeta por EntryID
 | --- | --- | --- |
 |EntryID|ID del email que se desea mover.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Carpeta de destino|Carpeta donde se desea mover.|0014182A9615CE201001B40B98EB45D6B4A70D3F4F050000D5955FDE0000|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
 ### Mover email a una carpeta por nombre
   
@@ -88,6 +90,7 @@ Mueve un email hacia una carpeta por Nombre (Solo carpetas dentro de la bandeja 
 | --- | --- | --- |
 |EntryID|ID del email que se desea mover.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Carpeta de destino|Carpeta donde se desea mover.|mi_carpeta|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
 ### Marcar email como no leído
   
@@ -95,6 +98,7 @@ Marca un email como no leído por EntryID
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |EntryID|ID del email que se desea marker como no leído.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
 ### Enviar Email
   
@@ -108,6 +112,7 @@ Envia un email, previamente debe configurar el servidor
 |Archivo Adjunto|Archivo adjunto que se desea enviar.|C:\User\Desktop\test.txt|
 |Carpeta (Varios archivos)|Carpeta que contiene archivos adjuntos que se desea enviar.|C:\User\Desktop\Files|
 |Confirmación de lectura||True|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
 ### Responder Email
   
@@ -119,6 +124,7 @@ Responde un email usando el Entry ID
 |Archivo Adjunto|Archivo adjunto que se desea enviar.|C:\User\Desktop\test.txt|
 |Carpeta (Varios archivos)|Carpeta que contiene archivos adjuntos que se desea enviar.|C:\User\Desktop\Files|
 |Incluir archivos adjuntos recibidos|Incluye en la respuesta el/los archivos adjuntos recibidos en el mail.|True|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
 ### Reenviar Email
   
@@ -127,6 +133,7 @@ Reenvia un email usando el Entry ID
 | --- | --- | --- |
 |EntryID|ID del email que se desea reenviar.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Para|Email de los destinatarios.|to@mail.com, to2@mail.com|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
 ### Guardar Email
   
@@ -135,6 +142,7 @@ Guarda un email usando el Entry ID
 | --- | --- | --- |
 |EntryID|ID del email que se desea guardar.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Ruta donde guardar|Ruta en la cual se desea guardar el archivo.|C:/Users/Documents/mail.msg|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
 ### Extraer tabla por EntryID
   
@@ -142,6 +150,7 @@ Extrae una table del correo electrónico por EntryID
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |EntryID|ID del email que se desea extraer la tabla.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 |Asignar a variable|Guardar el resultado de la lectura de la tabla.|Variable|
 
 ### Descargar adjuntos por EntryID
@@ -151,6 +160,7 @@ Descargar adjuntos por EntryID en una carpeta
 | --- | --- | --- |
 |EntryID|ID del email que se desea obtener.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Descargar adjuntos|Carpeta donde guardar los documentos adjuntos.|C:\User\|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 
 ### Leer archivo .msg
   
@@ -158,4 +168,5 @@ Leer archivo .msg y almacenar la información en una variable
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Ruta del archivo .msg|Ruta del archivo .msg que se desea leer.|C:/Users/User/Desktop/file.msg|
+|Sesión de Outlook|Asigna una sesión a la conexión de Outlook.|session|
 |Asignar resultado a variable|Nombre de la variable donde se almacenará la información del archivo .msg.|Variable|

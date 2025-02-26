@@ -316,7 +316,12 @@ if module == "readEmail":
     try:
         mail_ = instance.GetItemFromID(entry_id)
         files = []
+        
         for att in mail_.Attachments:
+            print("propiedades")
+            print(att.DisplayName)  
+            print(att.Position) 
+            print(att.Index)    
             if download_:
                 base_name, ext = os.path.splitext(att.FileName)
                 unique_name = att.FileName
@@ -325,6 +330,7 @@ if module == "readEmail":
                     unique_name = f"{base_name} ({counter}){ext}"
                     counter += 1
                 att.SaveASFile(os.path.join(download_, unique_name))
+                
                 files.append(unique_name)
             # files.append(att.FileName)
         if result_:
@@ -362,7 +368,12 @@ if module == "readEmail":
 if module == "moveEmail":
     to_ = GetParams("to_")
     entry_id = GetParams("entry_id")
+
     instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+    if not instance:
+        raise Exception("No Outlook connection")
+
+
     if not to_:
         raise Exception("No destination folder provided")
 
@@ -370,8 +381,10 @@ if module == "moveEmail":
         raise Exception("No entryID provided")
 
     try:
-        # inbox = instance.GetDefaultFolder(6)
+       # inbox = instance.GetDefaultFolder(6)
         mail_ = instance.GetItemFromID(entry_id)
+        #print(mail_)
+        #mail_.Move(inbox.Folders.GetFolderFromID(to_))
         mail_.Move(instance.GetFolderFromID(to_))
     except Exception as e:
         PrintException()
@@ -381,7 +394,7 @@ if module == "moveEmailByName":
     to_ = GetParams("to_")
     entry_id = GetParams("entry_id")
 
-    instance = mod_office_outlook_sessions[session]["instance"]
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     if not to_:
         raise Exception("No destination folder provided")
 
@@ -389,9 +402,8 @@ if module == "moveEmailByName":
         raise Exception("No entryID provided")
 
     try:
-        # inbox = instance.GetDefaultFolder(6)
         mail_ = instance.GetItemFromID(entry_id)
-        mail_.Move(instance.GetDefaultFolder(6).Folders(to_))
+        mail_.Move(instance.Folders.item(1).Folders[to_])
     except Exception as e:
         PrintException()
         raise e
@@ -512,7 +524,8 @@ if module == "replyEmail":
 if module == "Forward":
     entry_id = GetParams("entry_id")
     to_ = GetParams("to")
-    instance = mod_office_outlook_sessions[session]["instance"]
+    #instance = mod_office_outlook_sessions[session]["instance"]
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     if not instance:
         raise Exception("No Outlook connection")
     try:
@@ -530,7 +543,8 @@ if module == "Forward":
 if module == "SaveAs":
     entry_id = GetParams("entry_id")
     whereToSave = GetParams("whereToSave")
-    instance = mod_office_outlook_sessions[session]["instance"]
+    #instance = mod_office_outlook_sessions[session]["instance"]
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     if not instance:
         raise Exception("No Outlook connection")
     mail = instance.GetItemFromID(entry_id)
@@ -540,7 +554,8 @@ if module == "SaveAs":
 if module == "extractTable":
     entry_id = GetParams("entry_id")
     result_ = GetParams("result")
-    instance = mod_office_outlook_sessions[session]["instance"]
+    #instance = mod_office_outlook_sessions[session]["instance"]
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     if not instance:
         raise Exception("No Outlook connection")
     realData = []
@@ -576,7 +591,8 @@ if module == "extractTable":
 if module == "get_attachments":
     entry_id = GetParams("entry_id")
     download_ = GetParams("download")
-    instance = mod_office_outlook_sessions[session]["instance"]
+    #instance = mod_office_outlook_sessions[session]["instance"]
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI")
     if not instance:
         raise Exception("No Outlook connection")
     try:

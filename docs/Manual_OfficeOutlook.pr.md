@@ -40,6 +40,7 @@ Criar uma pasta no Outlook
 | --- | --- | --- |
 |Nome da pasta|Nome da pasta que você deseja criar.|Nova pasta|
 |Pasta de destino|Pasta onde você deseja criar a nova pasta (opcional).|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEE4E12200|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 |Atribuir à variável|Salve o resultado da criação da pasta.|Variável|
 
 ### Listar Pastas
@@ -80,6 +81,7 @@ Mover dados de e-mail por EntryID fornecido
 | --- | --- | --- |
 |EntryID|ID do e-mail que você deseja mover.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Pasta de destino|Pasta para onde você deseja mover.|0014182A9615CE201001B40B98EB45D6B4A70D3F4F050000D5955FDE0000|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Mover e-mail para pasta por nome
   
@@ -88,6 +90,7 @@ Mova os dados de e-mail pelo nome fornecido. (Somente pasta na caixa de entrada)
 | --- | --- | --- |
 |EntryID|ID do e-mail que você deseja mover.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Pasta de destino|Pasta para onde você deseja mover.|minha_pasta|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Marcar e-mail como não lido
   
@@ -95,6 +98,7 @@ Marcar e-mail como não lido pelo EntryID fornecido
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |EntryID|ID do e-mail que você deseja marcar como não lido.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Enviar email
   
@@ -108,6 +112,7 @@ Envie e-mail, antes de configurar o servidor
 |Arquivo anexo|Arquivo anexado que você deseja enviar.|C:\User\Desktop\test.txt|
 |Pasta (vários arquivos)|Pasta que contém arquivos anexados que você deseja enviar.|C:\User\Desktop\Files|
 |Confirmação de leitura||True|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Responder email
   
@@ -119,6 +124,7 @@ Responder e-mail do Entry ID
 |Arquivo anexo|Arquivo anexado com o qual você deseja enviar.|C:\User\Desktop\test.txt|
 |Pasta (vários arquivos)|Pasta que contém arquivos anexados com os quais você deseja enviar.|C:\User\Desktop\Files|
 |Incluir arquivos anexados recebidos|Inclua os anexos recebidos no e-mail na resposta.|True|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Reenviar email
   
@@ -127,6 +133,7 @@ Reenviar e-mail usando o  Entry ID
 | --- | --- | --- |
 |EntryID|ID do e-mail que você deseja reenviar.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Para|Email dos destinatários.|to@mail.com, to2@mail.com|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Salvar email
   
@@ -135,6 +142,7 @@ Salva um e-mail usando o Entry ID
 | --- | --- | --- |
 |EntryID|ID do email que você deseja salvar.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Caminho para salvar o arquivo|Caminho no qual salvar o arquivo.|C:/Users/Documents/mail.msg|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Extrair tabela do email por EntryID
   
@@ -142,6 +150,7 @@ Extraia o conteúdo de uma tabela por e-mail EntryID fornecido
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |EntryID|ID do email que você deseja extrair da tabela.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 |Atribuir a variável|Salve o resultado da leitura da tabela.|Variável|
 
 ### Baixar anexos por EntryID
@@ -151,6 +160,7 @@ Baixar anexos por EntryID em uma pasta
 | --- | --- | --- |
 |EntryID|ID do e-mail que você deseja obter.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Baixe os anexos|Caminho para a pasta onde salvar os anexos.|C:\User\|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 
 ### Leia o arquivo .msg
   
@@ -158,4 +168,5 @@ Leia o arquivo .msg e armazene as informações em uma variável
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Caminho para o arquivo .msg|Caminho do arquivo .msg que você deseja ler.|C:/Users/User/Desktop/file.msg|
+|Sessão do Outlook|Atribua uma sessão à conexão do Outlook|session|
 |Atribuir resultado à variável|Nome da variável onde as informações do arquivo .msg serão armazenadas.|Variável|

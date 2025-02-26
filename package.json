@@ -7,7 +7,7 @@
     "pr": "Módulo para conectar-se ao aplicativo de desktop do Outlook."
   },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.6.6",
+  "version": "1.6.9",
   "license": "MIT",
   "homepage": "http://rocketbot.com",
   "linux": true,
@@ -210,6 +210,26 @@
             "id": "folder_destination",
             "css": "col-md-6"
           },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
+          },          
           {
             "type": "input",
             "placeholder": {
@@ -712,6 +732,26 @@
             },
             "id": "to_",
             "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -794,6 +834,26 @@
             },
             "id": "to_",
             "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -851,6 +911,26 @@
             },
             "id": "entry_id",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1048,6 +1128,26 @@
             },
             "id": "read_receipt",
             "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1195,6 +1295,26 @@
             },
             "id": "includeatt",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1277,6 +1397,26 @@
             },
             "id": "to",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1359,6 +1499,26 @@
             },
             "id": "whereToSave",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1415,6 +1575,26 @@
               "pr": "ID do email que você deseja extrair da tabela."
             },
             "id": "entry_id",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
             "css": "col-md-6"
           },
           {
@@ -1518,6 +1698,26 @@
             },
             "id": "download",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1574,6 +1774,26 @@
               "pr": "Caminho do arquivo .msg que você deseja ler."
             },
             "id": "msg_file",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "session",
+              "en": "session",
+              "pr": "session"
+            },
+            "title": {
+              "en": "Outlook Session",
+              "es": "Sesión de Outlook",
+              "pr": "Sessão do Outlook"
+            },
+            "description": {
+              "es": "Asigna una sesión a la conexión de Outlook.",
+              "en": "Assign a session to the Outlook connection.",
+              "pr": "Atribua uma sessão à conexão do Outlook"
+            },
+            "id": "session",
             "css": "col-md-6"
           },
           {
