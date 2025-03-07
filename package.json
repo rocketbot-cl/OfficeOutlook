@@ -140,7 +140,7 @@
       "group": "scripts",
       "linux": true,
       "windows": true,
-      "mac": true,
+      "mac": false,
       "docker": true
     },
     {
@@ -341,7 +341,7 @@
       "group": "scripts",
       "linux": true,
       "windows": true,
-      "mac": true,
+      "mac": false,
       "docker": true
     },
     {
