@@ -111,7 +111,8 @@ if module == "makeDir":
     folder_name = GetParams("folder_name")
     result = GetParams("result")
     folder_destination = GetParams("folder_destination")
-    instance = mod_office_outlook_sessions[session]["instance"]
+    #instance = mod_office_outlook_sessions[session]["instance"]
+    instance = client.Dispatch("Outlook.Application").GetNamespace("MAPI") 
     if not instance:
         raise Exception("No Outlook connection")
 
