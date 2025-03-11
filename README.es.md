@@ -37,7 +37,7 @@ Lea la información del correo electrónico por EntryID
 Mueve un email hacia una carpeta por EntryID
 
 7. Mover email a una carpeta por nombre  
-Mueve un email hacia una carpeta por Nombre (Solo carpetas dentro de la bandeja de entrada)
+Mueve un email hacia una carpeta por Nombre (Solo carpetas principales, no subcarpetas)
 
 8. Marcar email como no leído  
 Marca un email como no leído por EntryID
@@ -70,7 +70,6 @@ Leer archivo .msg y almacenar la información en una variable
 ### OS
 
 - windows
-- mac
 - linux
 - docker
 

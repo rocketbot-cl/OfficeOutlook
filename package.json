@@ -7,7 +7,7 @@
     "pr": "Módulo para conectar-se ao aplicativo de desktop do Outlook."
   },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.6.10",
+  "version": "1.6.11",
   "license": "MIT",
   "homepage": "http://rocketbot.com",
   "linux": true,
@@ -252,6 +252,7 @@
               "en": "Save the result of the creation of the folder.",
               "pr": "Salve o resultado da criação da pasta."
             },
+            "remove_vars": true,
             "id": "result",
             "css": "col-md-12"
           }
@@ -771,19 +772,19 @@
     {
       "en": {
         "title": "Move email to folder by Name",
-        "description": "Move email data by Name provided. (Only folder into Inbox)",
+        "description": "Move email data by Name provided. (Only main folders, not subfolders)",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Mover email a una carpeta por nombre",
-        "description": "Mueve un email hacia una carpeta por Nombre (Solo carpetas dentro de la bandeja de entrada)",
+        "description": "Mueve un email hacia una carpeta por Nombre (Solo carpetas principales, no subcarpetas)",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Mover e-mail para pasta por nome",
-        "description": "Mova os dados de e-mail pelo nome fornecido. (Somente pasta na caixa de entrada)",
+        "description": "Mova os dados de e-mail pelo nome fornecido. (Somente pastas principais, não subpastas)",
         "title_options": null,
         "options": null
       },
@@ -1614,6 +1615,7 @@
               "en": "Save the result of the read of the table.",
               "pr": "Salve o resultado da leitura da tabela."
             },
+            "remove_vars": true,
             "id": "result",
             "css": "col-md-6",
             "help": {
@@ -1813,6 +1815,7 @@
               "en": "Name of the variable where the information of the .msg file will be stored.",
               "pr": "Nome da variável onde as informações do arquivo .msg serão armazenadas."
             },
+            "remove_vars": true,
             "id": "result",
             "css": "col-md-6"
           }

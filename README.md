@@ -37,7 +37,7 @@ Read email data by EntryID provided
 Move email data by EntryID provided
 
 7. Move email to folder by Name  
-Move email data by Name provided. (Only folder into Inbox)
+Move email data by Name provided. (Only main folders, not subfolders)
 
 8. Mark email as unread  
 Mark email as unread by EntryID provided
@@ -70,7 +70,6 @@ Read .msg file and store the information in a variable
 ### OS
 
 - windows
-- mac
 - linux
 - docker
 

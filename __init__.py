@@ -169,7 +169,7 @@ if module == "list_folders":
 
                 folder_info = {
                     "Name": prefix_name + folder.Name,
-                    "EntryID": prefix_id + folder.EntryID,
+                    "EntryID": folder.EntryID,
                 }
                 folders_list.append(folder_info)
                 subfolders = getFolders(

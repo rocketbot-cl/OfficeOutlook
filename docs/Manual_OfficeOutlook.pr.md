@@ -85,7 +85,7 @@ Mover dados de e-mail por EntryID fornecido
 
 ### Mover e-mail para pasta por nome
   
-Mova os dados de e-mail pelo nome fornecido. (Somente pasta na caixa de entrada)
+Mova os dados de e-mail pelo nome fornecido. (Somente pastas principais, não subpastas)
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |EntryID|ID do e-mail que você deseja mover.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|

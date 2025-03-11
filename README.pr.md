@@ -37,7 +37,7 @@ Ler dados de e-mail por EntryID fornecido
 Mover dados de e-mail por EntryID fornecido
 
 7. Mover e-mail para pasta por nome  
-Mova os dados de e-mail pelo nome fornecido. (Somente pasta na caixa de entrada)
+Mova os dados de e-mail pelo nome fornecido. (Somente pastas principais, não subpastas)
 
 8. Marcar e-mail como não lido  
 Marcar e-mail como não lido pelo EntryID fornecido
@@ -70,7 +70,6 @@ Leia o arquivo .msg e armazene as informações em uma variável
 ### OS
 
 - windows
-- mac
 - linux
 - docker
 

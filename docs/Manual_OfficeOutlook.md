@@ -85,7 +85,7 @@ Mueve un email hacia una carpeta por EntryID
 
 ### Mover email a una carpeta por nombre
   
-Mueve un email hacia una carpeta por Nombre (Solo carpetas dentro de la bandeja de entrada)
+Mueve un email hacia una carpeta por Nombre (Solo carpetas principales, no subcarpetas)
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |EntryID|ID del email que se desea mover.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|

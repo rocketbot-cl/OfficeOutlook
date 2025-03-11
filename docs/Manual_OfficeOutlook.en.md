@@ -83,7 +83,7 @@ Move email data by EntryID provided
 
 ### Move email to folder by Name
   
-Move email data by Name provided. (Only folder into Inbox)
+Move email data by Name provided. (Only main folders, not subfolders)
 |Parameters|Description|example|
 | --- | --- | --- |
 |EntryID|ID of the email that you want to move.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
