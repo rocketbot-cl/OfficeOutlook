@@ -38,6 +38,7 @@ Create a folder on Outlook
 | --- | --- | --- |
 |Folder name|Name of the folder you want to create.|New folder|
 |Destination dir|Folder where you want to create the new folder inside (optional).|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEE4E12200|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 |Set to variable|Save the result of the creation of the folder.|Variable|
 
 ### List Folders
@@ -78,14 +79,16 @@ Move email data by EntryID provided
 | --- | --- | --- |
 |EntryID|ID of the email that you want to move.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Destination folder|Folder where you want to move in.|0014182A9615CE201001B40B98EB45D6B4A70D3F4F050000D5955FDE0000|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 
 ### Move email to folder by Name
   
-Move email data by Name provided. (Only folder into Inbox)
+Move email data by Name provided. (Only main folders, not subfolders)
 |Parameters|Description|example|
 | --- | --- | --- |
 |EntryID|ID of the email that you want to move.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Destination folder|Folder where you want to move in.|my_folder|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 
 ### Mark email as unread
   
@@ -93,6 +96,7 @@ Mark email as unread by EntryID provided
 |Parameters|Description|example|
 | --- | --- | --- |
 |EntryID|ID of email that you want to mark as unread.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 
 ### Send Email
   
@@ -106,6 +110,7 @@ Send email, before you must configurate the server
 |Attached File|Attached file that you want to send.|C:\User\Desktop\test.txt|
 |Folder (Multiple files)|Folder that contains attached files which you want to send.|C:\User\Desktop\Files|
 |Read Receipt||True|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 
 ### Reply Email
   
@@ -117,6 +122,7 @@ Reply mail from Entry ID
 |Attached File|Attached file that you want to send with.|C:\User\Desktop\test.txt|
 |Folder (Multiple files)|Folder that contains attached files which you want to send with.|C:\User\Desktop\Files|
 |Include attached files received|Include the email's received attachments in the reply.|True|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 
 ### Forward Email
   
@@ -125,6 +131,7 @@ Forward mail from Entry ID
 | --- | --- | --- |
 |EntryID|ID of the email that you want to forward.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |To|Emails of recipients.|to@mail.com, to2@mail.com|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 
 ### Save Email
   
@@ -133,6 +140,7 @@ Saves a mail from Entry ID
 | --- | --- | --- |
 |EntryID|ID of email that you want to save.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Path to save file|Path in which to save the file.|C:/Users/Documents/mail.msg|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 
 ### Extract table from email by EntryID
   
@@ -140,6 +148,7 @@ Extract the content of a table by email EntryID provided
 |Parameters|Description|example|
 | --- | --- | --- |
 |EntryID|ID of email that you want to extract the table.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 |Set to variable|Save the result of the read of the table.|Variable|
 
 ### Download attachments by EntryID
@@ -149,6 +158,7 @@ Download attachments by EntryID in a folder
 | --- | --- | --- |
 |EntryID|ID of email that you want to obtain.|EF000000B8EE7A4C31BD6441BF6B59D0B56B93BEC40C2000|
 |Download attachments|Path to folder where to save attachments.|C:\User\|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 
 ### Read .msg file
   
@@ -156,4 +166,5 @@ Read .msg file and store the information in a variable
 |Parameters|Description|example|
 | --- | --- | --- |
 |Path to .msg file|Path of the .msg file that you want to read.|C:/Users/User/Desktop/file.msg|
+|Outlook Session|Assign a session to the Outlook connection.|session|
 |Asignar resultado a variable|Name of the variable where the information of the .msg file will be stored.|Variable|
