@@ -233,7 +233,10 @@ if module == "search":
         #     filter_ = ""
 
         filter_2 = "@SQL="
-
+        filter_ = filter_.replace(
+            """subject """, """"urn:schemas:httpmail:subject" like """
+        )
+        
         filter_ = re.sub(
             r"""contains\(\s*subject\s*,\s*(['"])(.*?)\1\s*\)""",
             r'"urn:schemas:httpmail:subject" LIKE \'%\2%\'',
