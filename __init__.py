@@ -338,7 +338,13 @@ if module == "readEmail":
                 while os.path.exists(os.path.join(download_, unique_name)):
                     unique_name = f"{base_name} ({counter}){ext}"
                     counter += 1
-                att.SaveASFile(os.path.join(download_, unique_name))
+                #att.SaveASFile(os.path.join(download_, unique_name))
+                save_path = os.path.join(download_, unique_name)
+                save_path = os.path.abspath(save_path)
+                if len(save_path) > 250 and not save_path.startswith("\\\\?\\"):
+                    save_path = "\\\\?\\" + save_path
+
+                att.SaveASFile(save_path)
                 
                 files.append(unique_name)
             # files.append(att.FileName)
