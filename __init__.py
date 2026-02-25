@@ -445,8 +445,10 @@ if module == "sendEmail":
     read_receipt = GetParams("read_receipt")
     instance = mod_office_outlook_sessions[session]["instance"]
     try:
+        new_to = to_.replace(", ", "; ").replace(",", "; ")
+
         mail = instance.Application.CreateItem(0)
-        mail.To = to_
+        mail.To = new_to
         mail.BodyFormat = 2
 
         # get image path in body
