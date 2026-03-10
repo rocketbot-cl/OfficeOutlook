@@ -468,6 +468,7 @@ if module == "sendEmail":
 
         mail.HTMLBody = body
         if cc:
+            new_cc = cc.replace(", ", "; ").replace(",", "; ")
             mail.CC = cc
         mail.Subject = subject
         if att_files:
